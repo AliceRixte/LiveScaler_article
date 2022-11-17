@@ -1,0 +1,205 @@
+\documentclass[french,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{eurosym}
+\usepackage[affil-it]{authblk}
+
+\usepackage[table]{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.markings}
+\usetikzlibrary{cd}
+\usetikzlibrary{shapes.geometric,fit}
+\usetikzlibrary{positioning}
+
+
+
+\usepackage[top=4cm, bottom=4cm, left=3cm, right=3cm]{geometry}
+\usepackage[fencedCode,inlineFootnotes,citations,definitionLists,hashEnumerators,smartEllipses,hybrid,pipeTables, tableCaptions]{markdown}
+\usepackage{keyval}
+
+\usepackage[backend=biber,style=alphabetic,citestyle=authoryear-comp]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{minted}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+
+
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\usepackage{wrapfig}
+\usepackage{float}
+
+\usepackage{hyperref}
+\interfootnotelinepenalty=10000
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{caption}
+\usepackage{subcaption}
+\tikzcdset{every label/.append style = {font = \tiny}}
+
+\usepackage{csquotes}
+\usepackage{comment}
+
+
+\usepackage{tabularx}
+\definecolor{tableShade}{gray}{0.9}
+
+\usepackage[shortlabels]{enumitem}
+
+
+
+
+
+\title{LiveScaler}
+\author{Alice Rixte}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\section{Transformations de gammes}
+
+\begin{comment}
+  \subsection{Quelles transformations de gamme autoriser ?}
+Les transformation affines de la forme $an + b$ où $n$ est la note de départ.
+\subsection{Pourquoi ces transformations ?}
+\begin{enumerate}
+  \item Ces transformations sont adaptées à la musique tonale occidentale : passage du majeur au mineur.
+  \item Elles sont facilement implémentables
+  \item Elles peuvent être exprimées par une paire d'entiers, ce qui permet de les communiquer directement via MIDI.
+\end{enumerate}
+
+
+\subsection{Peut-on quand même sortir de la tonalité ?}
+Oui : \begin{enumerate}
+  \item on peut passer d'une gamme quelconque à une gamme par tons
+  \item elles s'appliquent dans un contexte microtonal
+  \item Possibilité d'ajouter une permutation quelconque personnalisée
+\end{enumerate} 
+\end{comment}
+
+
+Nous définissons ici une transformation de gamme comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction $\mathbb{Z}$ dans $\mathbb{Z}$. Un bon exemple de transformation de gamme est la transposition : à chaque note $n$ on associe la note $n+k$ (resp. $n-k$) décalée de $k$ demi-tons vers le haut (resp. vers le bas). Une transposition de $t$ demi-tons est représentée par la transformation de gamme $T_t : n \mapsto n+t$.
+
+Les transformations de gamme qui vont nous intéresser ici sont les transformation affines, c'est-à-dire les fonctions de la forme $A_{m,t} : n \mapsto mn + t$ avec $m$ le \emph{coefficient multiplicateur} de la transformation affine et $t$ le \emph{coefficient de transposition}. Par exemple, la transposition de $3$ demi-tons vers le haut correspond par exemple à la transformation affine $A_{1,3}$. De manière plus générale, les transpositions sont de la forme $A_{1,t}$ avec $t$ l'intervalle de transposition (positif lorsque l'on transpose vers le haut et négatif lorsque l'on transpose vers le bas).
+
+Notre choix de nous restreindre aux transformations affines repose sur le fait d'une part qu'on peut très facilement les implémenter en les appliquant à un flux MIDI et d'autre part sur leur expressivité : elles permettent par exemple d'exprimer les transpositions, de passer d'une gamme mineure à une gamme majeure (et réciproquement), ou encore de passer de n'importe quelle gamme diatonique à une gamme par ton. 
+
+\subsection{Inversion}
+
+
+% https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
+
+
+
+
+
+
+\begin{figure}[ht]
+  \centering
+    \caption{La transformation $A_{-1,4}$  : passage à la relative mineure de $C$ à $Am$}\label{fig:inner-proof}
+        \begin{tikzpicture}[baseline= (a).base]    
+
+          \node[scale=1.3] (a) at (0,0){
+        \begin{tikzcd}[column sep = tiny]
+          % https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
+	& {...} & {A_{-1}} & {A\#_{-1}} & {B_{-1}} & {C_{0}} & {C\#_{0}} & {D_0} & {D\#_0} & {E_0} & {F_0} & {F\#_0} & {G_0} & {...} \\
+	& {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+	{} &&&&&&& {} \\
+	&& {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+	& {...} & {A_{-1}} & {A\#_{-1}} & {B_{-1}} & {C_0} & {C\#_0} & {D_0} & {D\#_0} & {E_0} & {F_0} & {F\#_0} & {G_0} & {...}
+	\arrow[from=2-6, to=4-10]
+	\arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-8, to=4-8]
+	\arrow[from=2-10, to=4-6]
+	\arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-5, to=4-11]
+	\arrow[from=2-3, to=4-13]
+	\arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-11, to=4-5]
+	\arrow[from=2-13, to=4-3]
+\end{tikzcd}
+    };
+      \end{tikzpicture}   
+\end{figure}
+
+
+
+
+
+
+
+\section{Implémentation des transformations de gamme : l'outil LiveScaler}
+\subsection{Justification du choix M4L /Ableton Live}
+\begin{enumerate}
+  \item Outil populaire dans le domaine de l'EDM
+  \item Facilité d'utilisation et intégration dans un environnement 
+  \item Prototypage aisé dans M4L
+  \item Communication entre les entités d'Ableton Live via messages M4L
+\end{enumerate}
+\subsection{Comment appliquer la transformation ?}
+Architecture chef d'orchestre/ instrument : 
+\begin{enumerate}
+  \item Un seul changement de gamme est envoyé à tous les instruments simultanément
+  \item Chaque instrument applique la transformation selon ses propres paramètres (e.g. intervalle de repliement)
+  \item Deux types de paramètres : \begin{itemize}
+    \item Paramètres globaux envoyés sous la forme de messages à tous les instruments sous forme de message.
+    \item Paramètre propre à chaque instrument d'interprétation des messages reçus.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Quand appliquer la transformation ? }
+Instantanément, car le flux MIDI en entrée fait office de "quantize".  ===> Quid des notes en cours ?
+\begin{enumerate}
+  \item On les arrête
+  \item Legato
+  \item Retrigger
+\end{enumerate}
+===> Le choix se fait séparément pour chaque instrument
+
+\subsection{Comment éviter que les notes soient trop aiguës ou trop graves ?}
+Repliement des transformation de gamme sur un intervalle
+\begin{enumerate}
+  \item Limiter l'écart de hauteur entre la note initiale et la note après la transformation.
+  \item Possibilité d'adapter le repliement au morceau
+\end{enumerate}
+===> le choix se fait séparément pour chaque instrument
+\section{Performance live avec LiveScaler}
+
+\section{Travaux connexes}
+\subsection{Transformations de gamme en live coding}
+\begin{enumerate}
+  \item propositions de Tidal
+  \item algorave
+\end{enumerate}
+\subsection{Théorie transformationnelle}
+\begin{enumerate}
+  \item Les transformations affines sont une généralisation 
+  \begin{enumerate}
+    \item des Tonnetz
+    \item des k-Nets
+  \end{enumerate}
+  \item ces transformations sont étudiées et utilisées surtout dans un contexte d'analyse et d'aide à la composition (OpenMusic)
+\end{enumerate}
+
+\subsection{Macro contrôle d'un morceau de musique électronique}
+\begin{enumerate}
+  \item "Changing musical emotion"
+\end{enumerate}
+
+\section{Conclusion}
+
+\section{Annexe : mapping de LiveScaler}
+
+\newpage
+\printbibliography
+
+\end{document}
