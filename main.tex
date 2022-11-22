@@ -13,7 +13,7 @@
 \usetikzlibrary{shapes.geometric,fit}
 \usetikzlibrary{positioning}
 
-
+\usepackage{leadsheets}
 
 \usepackage[top=4cm, bottom=4cm, left=3cm, right=3cm]{geometry}
 \usepackage[fencedCode,inlineFootnotes,citations,definitionLists,hashEnumerators,smartEllipses,hybrid,pipeTables, tableCaptions]{markdown}
@@ -69,7 +69,6 @@
 \section{Introduction}
 
 \section{Transformations de gammes}
-
 \begin{comment}
   \subsection{Quelles transformations de gamme autoriser ?}
 Les transformation affines de la forme $an + b$ où $n$ est la note de départ.
@@ -89,55 +88,119 @@ Oui : \begin{enumerate}
 \end{enumerate} 
 \end{comment}
 
-
-Nous définissons ici une transformation de gamme comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction $\mathbb{Z}$ dans $\mathbb{Z}$. Un bon exemple de transformation de gamme est la transposition : à chaque note $n$ on associe la note $n+k$ (resp. $n-k$) décalée de $k$ demi-tons vers le haut (resp. vers le bas). Une transposition de $t$ demi-tons est représentée par la transformation de gamme $T_t : n \mapsto n+t$.
-
-Les transformations de gamme qui vont nous intéresser ici sont les transformation affines, c'est-à-dire les fonctions de la forme $A_{m,t} : n \mapsto mn + t$ avec $m$ le \emph{coefficient multiplicateur} de la transformation affine et $t$ le \emph{coefficient de transposition}. Par exemple, la transposition de $3$ demi-tons vers le haut correspond par exemple à la transformation affine $A_{1,3}$. De manière plus générale, les transpositions sont de la forme $A_{1,t}$ avec $t$ l'intervalle de transposition (positif lorsque l'on transpose vers le haut et négatif lorsque l'on transpose vers le bas).
-
-Notre choix de nous restreindre aux transformations affines repose sur le fait d'une part qu'on peut très facilement les implémenter en les appliquant à un flux MIDI et d'autre part sur leur expressivité : elles permettent par exemple d'exprimer les transpositions, de passer d'une gamme mineure à une gamme majeure (et réciproquement), ou encore de passer de n'importe quelle gamme diatonique à une gamme par ton. 
-
-\subsection{Inversion}
+Nous définissons ici une \emph{transformation de gamme} comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction $\mathbb{Z}$ dans $\mathbb{Z}$. Un bon exemple de transformation de gamme est la transposition : à chaque note $n$ on associe la note $n+\tau$  décalée de $\tau$ demi-tons vers l'aigu lorsque $\tau$ est positif et vers le grave lorsque $\tau$ est négatif. Ainsi, une transposition de $\tau$ demi-tons est représentée par la transformation de gamme $ n \mapsto n+\tau$ (voir Figure \ref{fig:transp}).
 
 
-% https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
+\subsection{Transformations affines}
 
+Les transformations de gamme qui vont nous intéresser ici sont les \emph{transformation affines}\footnote{Cette définition est inspirée par les automorphismes du groupe $T/I$ présentés par \textcite{lewin1990klumpenhouwer}.}, c'est-à-dire les fonctions de la forme $A\langle\mu,\tau\rangle : n \mapsto \mu n + \tau$ avec $\mu$ le \emph{coefficient modal} de la transformation affine et $\tau$ le \emph{coefficient de transposition}. 
 
+Les transformations affines ont la propriété importante de préserver les classes de hauteur \footnote{En effet, pour toute base $b\in \mathbb{N}^*$, $\forall n_1,n_2 \in \mathbb{Z}, n_1 \equiv n_2 \mod b \implies \mu n_1 + \tau \equiv \mu n_2 + \tau \mod b$. Avec $b=12$, on obtient le résultat pour les classes de hauteurs dodécaphoniques. } c'est-à-dire que si deux notes sont identiques à une octave près, alors elles le seront toujours une fois la transformation affine appliquée. Ici, nous nous intéresseront particulièrement à l'image de triades tonales par une transformation affine.
 
+Nous allons à présent étudier plusieurs exemples afin de donner au lecteur un aperçu de leur expressivité.
 
-
+\paragraph{Transpositions}
+Lorsque $\mu = 1$, les transformations affines $A\langle 1,\tau \rangle : n \mapsto n + \tau$ permettent de représenter toutes les transpositions possibles (voir Figure \ref{fig:transp}).
 
 \begin{figure}[ht]
   \centering
-    \caption{La transformation $A_{-1,4}$  : passage à la relative mineure de $C$ à $Am$}\label{fig:inner-proof}
-        \begin{tikzpicture}[baseline= (a).base]    
+  \begin{tikzpicture}[baseline= (a).base]    
 
-          \node[scale=1.3] (a) at (0,0){
-        \begin{tikzcd}[column sep = tiny]
-          % https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
-	& {...} & {A_{-1}} & {A\#_{-1}} & {B_{-1}} & {C_{0}} & {C\#_{0}} & {D_0} & {D\#_0} & {E_0} & {F_0} & {F\#_0} & {G_0} & {...} \\
-	& {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
-	{} &&&&&&& {} \\
-	&& {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
-	& {...} & {A_{-1}} & {A\#_{-1}} & {B_{-1}} & {C_0} & {C\#_0} & {D_0} & {D\#_0} & {E_0} & {F_0} & {F\#_0} & {G_0} & {...}
-	\arrow[from=2-6, to=4-10]
-	\arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-8, to=4-8]
-	\arrow[from=2-10, to=4-6]
-	\arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-5, to=4-11]
-	\arrow[from=2-3, to=4-13]
-	\arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-11, to=4-5]
-	\arrow[from=2-13, to=4-3]
-\end{tikzcd}
-    };
-      \end{tikzpicture}   
+    \node[scale=1] (a) at (0,0){
+    \begin{tikzcd}[column sep=0pt, minimum width=11.5mm, row sep=0.1cm]
+    {...} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_{0}} & {C\sharp_{0}} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0} & {G_0} & {...} \\
+    {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+    {...} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0} & {G_0} & {...}
+    \arrow[color={rgb,255:red,117;green,117;blue,117}, dotted, from=2-1, to=9-3]
+    \arrow[from=2-2, to=9-4]
+    \arrow[from=2-3, to=9-5]
+    \arrow[from=2-4, to=9-6]
+    \arrow[from=2-5, to=9-7]
+    \arrow[from=2-6, to=9-8]
+    \arrow[from=2-7, to=9-9]
+    \arrow[from=2-8, to=9-10]
+    \arrow[from=2-9, to=9-11]
+    \arrow[from=2-10, to=9-12]
+    \arrow[color={rgb,255:red,117;green,117;blue,117}, dotted, from=2-11, to=9-13]
+    \end{tikzcd}
+  };
+  \end{tikzpicture}
+  \caption{La transformation $A \langle 1,2 \rangle : n \mapsto n + 2$  : transposition d'un ton vers l'aigu}\label{fig:transp}
 \end{figure}
 
+\paragraph{Inversions}
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[baseline= (a).base]    
+
+    \node[scale=1] (a) at (0,0){
+    \begin{tikzcd}[column sep=0pt, minimum width=11.5mm, row sep=0.1cm]
+    % https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
+      {...} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_{0}} & {C\sharp_{0}} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0} & {G_0} & {...} \\
+      {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+      {...} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0} & {G_0} & {...}
+      \arrow[from=2-5, to=9-9]
+      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-7, to=9-7]
+      \arrow[from=2-9, to=9-5]
+      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-4, to=9-10]
+      \arrow[from=2-2, to=9-12]
+      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-10, to=9-4]
+      \arrow[from=2-12, to=9-2]
+    \end{tikzcd}
+    };
+  \end{tikzpicture}   
+  \caption{La transformation $A_{-1,4} :n\mapsto -n + 4$  : passage à la relative mineure de $C$ à $Am$\label{fig:inversion}}
+  \medskip
+  \small
+  Pour des raisons de lisibilité seules les flèches de la gamme de do majeur ont été tracées. On notera la passage de l'accord $C$ à $Am$ et de $Am$ à $C$.
+\end{figure}
+
+Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n + \tau$ permettent de passer d'une gamme majeure à une gamme mineure et réciproquement. La Figure \ref{fig:inversion} illustre la manière dont le transformation $A\langle -1,4 \rangle$ envoie l'accord de do majeur $C_0,E_0,G_0$ vers un accord de la mineur $A_{-1},C_0,E_0$ mais aussi envoie l'accord de la mineur $A_{-1},C_0,E_0$ sur l'accord de do majeur  $C_0,E_0,G_0$. Comme les transformations affines préservent les classes de hauteur, on peut considérer que $A \langle -1,4\rangle$ envoie do majeur sur la mineur et la mineur sur do majeur. Le tableau \ref{tab:triadesA-14} explicite l'image des accords de la gamme de do majeur par $A\langle -1,4 \rangle$.
+
+
+
+\begin{table}[ht]
+  
+  \centering % instead of \begin{center}
+  \begin{tabular}{ccc}
+      \writechord{Cma} & $\mapsto$ & \writechord{Ami}\\
+      \writechord{Dmi} & $\mapsto$ & \writechord{Gma}\\
+      \writechord{Emi} & $\mapsto$ & \writechord{Fma}\\
+      \writechord{Fma} & $\mapsto$ & \writechord{Emi}\\
+      \writechord{Gma} & $\mapsto$ & \writechord{Dmi}\\
+      \writechord{Ami} & $\mapsto$ & \writechord{Cma}\\
+      \writechord{Bo} & $\mapsto$ & \writechord{Bo}
+  \end{tabular}
+  \caption{Image des accords de la gamme de do majeur par $A\langle -1, 4 \rangle$\label{tab:triadesA-14}}
+\end{table}
+
+Notre choix de nous restreindre aux transformations affines repose sur les faits suivants : \begin{itemize}
+  \item on peut les appliquer à n'importe quel flux MIDI
+  \item elles préservent les classes de hauteur 
+  \item elles permettent d'exprimer des transformations souvent utilisées dans la musique occidentale : les transpositions, de passer d'une gamme mineure à une gamme majeure (et réciproquement), mais aussi de sortir de la tonalité passant de n'importe quelle gamme diatonique à une gamme par tons
+\end{itemize} 
+
+\subsection{Restriction de l'écart de hauteur}
 
 
 
 
 
-
-\section{Implémentation des transformations de gamme : l'outil LiveScaler}
+\section{Implémentation des transformations de gamme : LiveScaler}
 \subsection{Justification du choix M4L /Ableton Live}
 \begin{enumerate}
   \item Outil populaire dans le domaine de l'EDM
