@@ -25,3 +25,5 @@
 *.run.xml
 *.synctex.gz
 *.toc
+*.pdf
+build
