@@ -1,14 +1,14 @@
 \subsubsection{Transformation vers une gamme par ton}
 Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe quelle gamme vers une gamme apparentée à une gamme par tons (voir Figure \ref{fig:gammepartons}). Les transformations affines peuvent donc permettre de sortir du cadre de la musique tonale occidentale.
 
-\begin{figure}[ht]
+\begin{figure}[htbp]
   \centering
   \begin{tikzpicture}[baseline= (a).base]    
 
     \node[scale=1] (a) at (0,0){
     \begin{tikzcd}[column sep=0pt, minimum width=11.5mm, row sep=0.1cm]
     % https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
-      {...}  & {G_0} & {G\sharp_0} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0}& {...} \\
+      {...}  & {G_{-1}} & {G\sharp_{-1}} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0}& {...} \\
       {...} & {-5} &{-4} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & {...} \\
       {} &&&&&&&&&&& {} \\
       {} &&&&&&&&&&& {} \\
@@ -17,7 +17,7 @@ Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe 
       {} &&&&&&&&&&& {} \\
       {} &&&&&&&&&&& {} \\
       {...} & {-5} &{-4} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & {...} \\ \\
-      {...}  & {G_0} & {G\sharp_0} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0}& {...}
+      {...}  & {G_{-1}} & {G\sharp_{-1}} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0}& {...}
       \arrow[color={rgb,255:red,117;green,117;blue,117}, dotted, from=2-4, to=9-1]
       \arrow[from=2-5, to=9-3]
       \arrow[from=2-6, to=9-5]
@@ -34,12 +34,12 @@ Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe 
   \caption{La transformation $A\langle 2,0\rangle :n\mapsto 2n$ permet d'obtenir des gammes apparentées à la gamme par tons.\label{fig:gammepartons}}
 \end{figure}
 
-Contrairement aux inversions et aux transpositions, cette transformation n'est pas bijective : l'image de $A\langle 2,0 \rangle$ contient exactement $6$ classes de hauteurs qui correspondent aux $6$ notes d'une des deux gammes par tons. Il est intéressant de noter que l'image d'une gamme majeure ou mineure naturelle par une fonction $A\langle 2,\tau\rangle$ contient les $6$ notes de la gamme par tons (voir Table \ref{tab:minparton}).
+Contrairement aux inversions et aux transpositions, cette transformation n'est pas bijective : l'image de $A\langle 2,0 \rangle$ contient exactement $6$ classes de hauteurs qui correspondent aux $6$ notes d'une des deux gammes par tons. Il est intéressant de noter que l'image d'une gamme majeure ou mineure naturelle par $A\langle 2,\tau\rangle$ contient les $6$ notes de la gamme par tons (voir Table \ref{tab:minparton}). Ce n'est pas le cas pour la gamme mineure harmonique dont l'image par $A\langle 2,\tau\rangle$ ne contient que $5$ classes de hauteur.
 
 
 
 
-\begin{table}[ht]
+\begin{table}[htbp]
   \centering
   \begin{subtable}{0.45\textwidth}
     \centering % instead of \begin{center}
@@ -62,7 +62,7 @@ Contrairement aux inversions et aux transpositions, cette transformation n'est p
           \writechord{F} & $\mapsto$ & \writechord{A\sharp}\\
           \writechord{G} & $\mapsto$ & \writechord{D}\\
           \writechord{A\flat} & $\mapsto$ & \writechord{E}\\
-          \writechord{B} & $\mapsto$ & \writechord{A\sharp}
+          \writechord{B\flat} & $\mapsto$ & \writechord{G\sharp}
       \end{tabular}
     \end{subtable}
     \caption{Image des gammes de Do majeur (à gauche) et Do mineur (à droite) par $A\langle 2, 0 \rangle$\label{tab:minparton}}
