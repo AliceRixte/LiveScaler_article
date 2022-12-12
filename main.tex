@@ -192,8 +192,120 @@ Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n 
   \caption{Image des accords de la gamme de do majeur par $A\langle -1, 4 \rangle$\label{tab:triadesA-14}}
 \end{table}
 
-\subsection{Transformation vers une gamme par ton}
-Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe quelle gamme vers une gamme apparentée à une gamme par tons. Les 
+\subsubsection{Transformation vers une gamme par ton}
+Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe quelle gamme vers une gamme apparentée à une gamme par tons. Contrairement aux inversions et aux transpositions, cette transformation n'est pas bijective. Les transformations affines peuvent donc permettre de sortir du cadre de la musique tonale occidentale.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[baseline= (a).base]    
+
+    \node[scale=1] (a) at (0,0){
+    \begin{tikzcd}[column sep=0pt, minimum width=11.5mm, row sep=0.1cm]
+    % https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
+      {...}  & {G_0} & {G\sharp_0} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0}& {...} \\
+      {...} & {-5} &{-4} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & {...} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {...} & {-5} &{-4} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & {...} \\ \\
+      {...}  & {G_0} & {G\sharp_0} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0}& {...}
+      \arrow[color={rgb,255:red,117;green,117;blue,117}, dotted, from=2-4, to=9-1]
+      \arrow[from=2-5, to=9-3]
+      \arrow[from=2-6, to=9-5]
+      \arrow[from=2-7, to=9-7]
+      \arrow[from=2-8, to=9-9]
+      \arrow[from=2-9, to=9-11]
+      \arrow[from=2-10, to=9-13]
+      %\arrow[color={rgb,255:red,117;green,117;blue,117}, dotted, from=2-11, to=9-15]
+      %\arrow[from=2-9, to=9-3]
+      %\arrow[from=2-10, to=9-3]
+    \end{tikzcd}
+    };
+  \end{tikzpicture}   
+  \caption{La transformation $A_{2,0} :n\mapsto 2n$ permet d'obtenir des gammes apparentées à la gamme par tons.\label{fig:gammepartons}}
+\end{figure}
+
+\begin{table}[ht]
+  \begin{subtable}[h]{0.45\textwidth}
+    \centering % instead of \begin{center}
+      \begin{tabular}{ccc}
+          \writechord{C} & $\mapsto$ & \writechord{C}\\
+          \writechord{D} & $\mapsto$ & \writechord{E}\\
+          \writechord{E} & $\mapsto$ & \writechord{G\sharp}\\
+          \writechord{F} & $\mapsto$ & \writechord{A\sharp}\\
+          \writechord{G} & $\mapsto$ & \writechord{D}\\
+          \writechord{A} & $\mapsto$ & \writechord{F\sharp}\\
+          \writechord{B} & $\mapsto$ & \writechord{A\sharp}
+      \end{tabular}
+  \end{subtable}
+  \begin{subtable}[h]{0.45\textwidth}
+      \centering % instead of \begin{center}
+      \begin{tabular}{ccc}
+          \writechord{C} & $\mapsto$ & \writechord{C}\\
+          \writechord{D} & $\mapsto$ & \writechord{E}\\
+          \writechord{E\flat} & $\mapsto$ & \writechord{F\sharp}\\
+          \writechord{F} & $\mapsto$ & \writechord{A\sharp}\\
+          \writechord{G} & $\mapsto$ & \writechord{D}\\
+          \writechord{A\flat} & $\mapsto$ & \writechord{E}\\
+          \writechord{B} & $\mapsto$ & \writechord{A\sharp}
+      \end{tabular}
+    \end{subtable}
+    \caption{Image des gammes de Do majeur (à gauche) et Do mineur (à droite) par $A\langle 2, 0 \rangle$\label{tab:minparton}}
+\end{table}
+
+\begin{table}[ht]
+  \begin{subtable}[h]{0.45\textwidth}
+    \centering % instead of \begin{center}
+      \begin{tabular}{ccc}
+          \writechord{C} & $\mapsto$ & \writechord{C}\\
+          \writechord{D} & $\mapsto$ & \writechord{A\sharp}\\
+          \writechord{E} & $\mapsto$ & \writechord{G\sharp}\\
+          \writechord{F} & $\mapsto$ & \writechord{C\sharp}\\
+          \writechord{G} & $\mapsto$ & \writechord{B}\\
+          \writechord{A} & $\mapsto$ & \writechord{A}\\
+          \writechord{B} & $\mapsto$ & \writechord{G}
+      \end{tabular}
+  \end{subtable}
+  \begin{subtable}[h]{0.45\textwidth}
+      \centering % instead of \begin{center}
+      \begin{tabular}{ccc}
+          \writechord{C} & $\mapsto$ & \writechord{C}\\
+          \writechord{D} & $\mapsto$ & \writechord{E}\\
+          \writechord{E\flat} & $\mapsto$ & \writechord{F\sharp}\\
+          \writechord{F} & $\mapsto$ & \writechord{A\sharp}\\
+          \writechord{G} & $\mapsto$ & \writechord{D}\\
+          \writechord{A\flat} & $\mapsto$ & \writechord{E}\\
+          \writechord{B} & $\mapsto$ & \writechord{A\sharp}
+      \end{tabular}
+    \end{subtable}
+    \caption{Image des gammes de Do majeur (à gauche) et Do mineur (à droite) par $A\langle 2, 0 \rangle$\label{tab:minparton}}
+\end{table}
+
+
+
+\begin{comment}
+  
+
+\begin{table}[h]
+  \begin{tabular}[cc]
+    $\mu$ & Type de transformation & Nombre de classes de hauteur
+    \hline
+    -2 & Gamme par ton inversée & 6 
+    -1 & Inversions majeur/mineur & 12
+    0 & Octaves & 1
+    1 & Transpositions & 12 
+    2 & Gamme par tons & 6
+    
+  \end{tabular}
+  \caption{Classification des transformations affines selon leur coefficient modal $\mu$}
+\end{table}
+\end{comment}
+  
+
+
 \subsection{Restriction de l'écart de hauteur}
 
 \section{Implémentation des transformations de gamme : LiveScaler}
