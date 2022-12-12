@@ -66,6 +66,8 @@
 \begin{document}
 \maketitle
 
+\tableofcontents
+
 \section{Introduction}
 
 \section{Transformations de gammes}
@@ -95,11 +97,13 @@ Nous définissons ici une \emph{transformation de gamme} comme une fonction qui 
 
 Les transformations de gamme qui vont nous intéresser ici sont les \emph{transformation affines}\footnote{Cette définition est inspirée par les automorphismes du groupe $T/I$ présentés par \textcite{lewin1990klumpenhouwer}.}, c'est-à-dire les fonctions de la forme $A\langle\mu,\tau\rangle : n \mapsto \mu n + \tau$ avec $\mu$ le \emph{coefficient modal} de la transformation affine et $\tau$ le \emph{coefficient de transposition}. 
 
-Les transformations affines ont la propriété importante de préserver les classes de hauteur \footnote{En effet, pour toute base $b\in \mathbb{N}^*$, $\forall n_1,n_2 \in \mathbb{Z}, n_1 \equiv n_2 \mod b \implies \mu n_1 + \tau \equiv \mu n_2 + \tau \mod b$. Avec $b=12$, on obtient le résultat pour les classes de hauteurs dodécaphoniques. } c'est-à-dire que si deux notes sont identiques à une octave près, alors elles le seront toujours une fois la transformation affine appliquée. Ici, nous nous intéresseront particulièrement à l'image de triades tonales par une transformation affine.
+Les transformations affines ont la propriété importante de préserver les classes de hauteur \footnote{En effet, pour toute base $b\in \mathbb{N}^*$, $\forall n_1,n_2 \in \mathbb{Z}, n_1 \equiv n_2 \mod b \implies \mu n_1 + \tau \equiv \mu n_2 + \tau \mod b$. Avec $b=12$, on obtient le résultat pour les classes de hauteurs dodécaphoniques. } c'est-à-dire que si deux notes sont identiques à l'octave près, alors elles le seront toujours une fois la transformation affine appliquée. 
 
+
+\subsection{Exemples de transformations}
 Nous allons à présent étudier plusieurs exemples afin de donner au lecteur un aperçu de leur expressivité.
 
-\paragraph{Transpositions}
+\subsubsection{Transpositions}
 Lorsque $\mu = 1$, les transformations affines $A\langle 1,\tau \rangle : n \mapsto n + \tau$ permettent de représenter toutes les transpositions possibles (voir Figure \ref{fig:transp}).
 
 \begin{figure}[ht]
@@ -132,10 +136,10 @@ Lorsque $\mu = 1$, les transformations affines $A\langle 1,\tau \rangle : n \map
     \end{tikzcd}
   };
   \end{tikzpicture}
-  \caption{La transformation $A \langle 1,2 \rangle : n \mapsto n + 2$  : transposition d'un ton vers l'aigu}\label{fig:transp}
+  \caption{La transformation $A \langle 1,2 \rangle : n \mapsto n + 2$ correspond transposition d'un ton vers l'aigu}\label{fig:transp}
 \end{figure}
 
-\paragraph{Inversions}
+\subsubsection{Inversions}
 \begin{figure}[ht]
   \centering
   \begin{tikzpicture}[baseline= (a).base]    
@@ -163,13 +167,13 @@ Lorsque $\mu = 1$, les transformations affines $A\langle 1,\tau \rangle : n \map
     \end{tikzcd}
     };
   \end{tikzpicture}   
-  \caption{La transformation $A_{-1,4} :n\mapsto -n + 4$  : passage à la relative mineure de $C$ à $Am$\label{fig:inversion}}
+  \caption{La transformation $A_{-1,4} :n\mapsto -n + 4$ correspond au passage à la relative mineure de $C$ à $Am$\label{fig:inversion}}
   \medskip
   \small
   Pour des raisons de lisibilité seules les flèches de la gamme de do majeur ont été tracées. On notera la passage de l'accord $C$ à $Am$ et de $Am$ à $C$.
 \end{figure}
 
-Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n + \tau$ permettent de passer d'une gamme majeure à une gamme mineure et réciproquement. La Figure \ref{fig:inversion} illustre la manière dont le transformation $A\langle -1,4 \rangle$ envoie l'accord de do majeur $C_0,E_0,G_0$ vers un accord de la mineur $A_{-1},C_0,E_0$ mais aussi envoie l'accord de la mineur $A_{-1},C_0,E_0$ sur l'accord de do majeur  $C_0,E_0,G_0$. Comme les transformations affines préservent les classes de hauteur, on peut considérer que $A \langle -1,4\rangle$ envoie do majeur sur la mineur et la mineur sur do majeur. Le tableau \ref{tab:triadesA-14} explicite l'image des accords de la gamme de do majeur par $A\langle -1,4 \rangle$.
+Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n + \tau$ permettent de passer d'une gamme majeure à une gamme mineure et réciproquement. La Figure \ref{fig:inversion} illustre la manière dont le transformation $A\langle -1,4 \rangle$ envoie l'accord de Do majeur $C_0,E_0,G_0$ vers un accord de La mineur $A_{-1},C_0,E_0$ mais aussi envoie l'accord de la mineur $A_{-1},C_0,E_0$ sur l'accord de do majeur  $C_0,E_0,G_0$. Comme les transformations affines préservent les classes de hauteur, on peut considérer que $A \langle -1,4\rangle$ envoie Do majeur sur La mineur et La mineur sur Do majeur. Le tableau \ref{tab:triadesA-14} explicite l'image des accords de la gamme de Do majeur par $A\langle -1,4 \rangle$.
 
 
 
@@ -188,17 +192,9 @@ Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n 
   \caption{Image des accords de la gamme de do majeur par $A\langle -1, 4 \rangle$\label{tab:triadesA-14}}
 \end{table}
 
-Notre choix de nous restreindre aux transformations affines repose sur les faits suivants : \begin{itemize}
-  \item on peut les appliquer à n'importe quel flux MIDI
-  \item elles préservent les classes de hauteur 
-  \item elles permettent d'exprimer des transformations souvent utilisées dans la musique occidentale : les transpositions, de passer d'une gamme mineure à une gamme majeure (et réciproquement), mais aussi de sortir de la tonalité passant de n'importe quelle gamme diatonique à une gamme par tons
-\end{itemize} 
-
+\subsection{Transformation vers une gamme par ton}
+Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe quelle gamme vers une gamme apparentée à une gamme par tons. Les 
 \subsection{Restriction de l'écart de hauteur}
-
-
-
-
 
 \section{Implémentation des transformations de gamme : LiveScaler}
 \subsection{Justification du choix M4L /Ableton Live}
