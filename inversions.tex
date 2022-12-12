@@ -1,0 +1,52 @@
+\subsubsection{Inversions}
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[baseline= (a).base]    
+
+    \node[scale=1] (a) at (0,0){
+    \begin{tikzcd}[column sep=0pt, minimum width=11.5mm, row sep=0.1cm]
+    % https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
+      {...} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_{0}} & {C\sharp_{0}} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0} & {G_0} & {...} \\
+      {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {} &&&&&&&&&&& {} \\
+      {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+      {...} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0} & {G_0} & {...}
+      \arrow[from=2-5, to=9-9]
+      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-7, to=9-7]
+      \arrow[from=2-9, to=9-5]
+      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-4, to=9-10]
+      \arrow[from=2-2, to=9-12]
+      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-10, to=9-4]
+      \arrow[from=2-12, to=9-2]
+    \end{tikzcd}
+    };
+  \end{tikzpicture}   
+  \caption{La transformation $A_{-1,4} :n\mapsto -n + 4$ correspond au passage à la relative mineure de $C$ à $Am$\label{fig:inversion}}
+  \medskip
+  \small
+  Pour des raisons de lisibilité seules les flèches de la gamme de do majeur ont été tracées. On notera la passage de l'accord $C$ à $Am$ et de $Am$ à $C$.
+\end{figure}
+
+Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n + \tau$ permettent de passer d'une gamme majeure à une gamme mineure et réciproquement. La Figure \ref{fig:inversion} illustre la manière dont le transformation $A\langle -1,4 \rangle$ envoie l'accord de Do majeur $C_0,E_0,G_0$ vers un accord de La mineur $A_{-1},C_0,E_0$ mais aussi envoie l'accord de la mineur $A_{-1},C_0,E_0$ sur l'accord de do majeur  $C_0,E_0,G_0$. Comme les transformations affines préservent les classes de hauteur, on peut considérer que $A \langle -1,4\rangle$ envoie Do majeur sur La mineur et La mineur sur Do majeur. Le tableau \ref{tab:triadesA-14} explicite l'image des accords de la gamme de Do majeur par $A\langle -1,4 \rangle$.
+
+
+
+\begin{table}[ht]
+  
+  \centering % instead of \begin{center}
+  \begin{tabular}{ccc}
+      \writechord{Cma} & $\mapsto$ & \writechord{Ami}\\
+      \writechord{Dmi} & $\mapsto$ & \writechord{Gma}\\
+      \writechord{Emi} & $\mapsto$ & \writechord{Fma}\\
+      \writechord{Fma} & $\mapsto$ & \writechord{Emi}\\
+      \writechord{Gma} & $\mapsto$ & \writechord{Dmi}\\
+      \writechord{Ami} & $\mapsto$ & \writechord{Cma}\\
+      \writechord{Bo} & $\mapsto$ & \writechord{Bo}
+  \end{tabular}
+  \caption{Image des accords de la gamme de do majeur par $A\langle -1, 4 \rangle$\label{tab:triadesA-14}}
+\end{table}

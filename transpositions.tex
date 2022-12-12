@@ -1,0 +1,35 @@
+\subsubsection{Transpositions}
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[baseline= (a).base]    
+
+    \node[scale=1] (a) at (0,0){
+    \begin{tikzcd}[column sep=0pt, minimum width=11.5mm, row sep=0.1cm]
+    {...} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_{0}} & {C\sharp_{0}} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0} & {G_0} & {...} \\
+    {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {} &&&&&&&&&&& {} \\
+    {...} & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & {...} \\
+    {...} & {A_{-1}} & {A\sharp_{-1}} & {B_{-1}} & {C_0} & {C\sharp_0} & {D_0} & {D\sharp_0} & {E_0} & {F_0} & {F\sharp_0} & {G_0} & {...}
+    \arrow[color={rgb,255:red,117;green,117;blue,117}, dotted, from=2-1, to=9-3]
+    \arrow[from=2-2, to=9-4]
+    \arrow[from=2-3, to=9-5]
+    \arrow[from=2-4, to=9-6]
+    \arrow[from=2-5, to=9-7]
+    \arrow[from=2-6, to=9-8]
+    \arrow[from=2-7, to=9-9]
+    \arrow[from=2-8, to=9-10]
+    \arrow[from=2-9, to=9-11]
+    \arrow[from=2-10, to=9-12]
+    \arrow[color={rgb,255:red,117;green,117;blue,117}, dotted, from=2-11, to=9-13]
+    \end{tikzcd}
+  };
+  \end{tikzpicture}
+  \caption{La transformation $A \langle 1,2 \rangle : n \mapsto n + 2$ correspond transposition d'un ton vers l'aigu}\label{fig:transp}
+\end{figure}
+Lorsque $\mu = 1$, les transformations affines $A\langle 1,\tau \rangle : n \mapsto n + \tau$ permettent de représenter toutes les transpositions possibles (voir Figure \ref{fig:transp}).
+
