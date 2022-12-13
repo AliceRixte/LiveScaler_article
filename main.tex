@@ -89,8 +89,11 @@ Oui : \begin{enumerate}
   \item Possibilité d'ajouter une permutation quelconque personnalisée
 \end{enumerate} 
 \end{comment}
+Dans cet article, on se place dans le contexte des tempéraments à division multiple. On notera $b$ le nombre de divisions de l'octave. Bien que l'ensemble des exemples proposés ici se focalisent sur le tempérament égal $b = 12$, le lecteur se persuadera aisément que tout ce qui est proposé ici peut se généraliser à tous les tempéraments à division multiple. On peut alors associer à toute note un entier $n\in \mathbb{Z}$. En particulier, nous utiliserons ici la norme MIDI en l'étendant à l'ensembles des entiers relatifs : $B_{-2}$ correspond ainsi à $-1$, $C_{-1}$ à $0$, $C\sharp_{-1}$  à $1$, $A_3$ à $57$ \dots
 
-Nous définissons ici une \emph{transformation de gamme} comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction $\mathbb{Z}$ dans $\mathbb{Z}$. Un bon exemple de transformation de gamme est la transposition : à chaque note $n$ on associe la note $n+\tau$  décalée de $\tau$ demi-tons vers l'aigu lorsque $\tau$ est positif et vers le grave lorsque $\tau$ est négatif. Ainsi, une transposition de $\tau$ demi-tons est représentée par la transformation de gamme $ n \mapsto n+\tau$ (voir Figure \ref{fig:transp}).
+Nous définissons ici une \emph{transformation de gamme} comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction $\mathbb{Z}$ dans $\mathbb{Z}$.
+
+Un bon exemple de transformation de gamme est la transposition : à chaque note $n$ on associe la note $n+\tau$  décalée de $\tau$ demi-tons vers l'aigu lorsque $\tau$ est positif et vers le grave lorsque $\tau$ est négatif. Ainsi, une transposition de $\tau$ demi-tons est représentée par la transformation de gamme $ n \mapsto n+\tau$ (voir Figure \ref{fig:transp}).
 
 
 \input{affines.tex}
@@ -98,14 +101,7 @@ Nous définissons ici une \emph{transformation de gamme} comme une fonction qui 
 \input{inversions.tex}
 \input{gammeparton.tex}
 \input{coeffmodal.tex}
-\subsection{Restriction de l'écart de hauteur}
-Comment éviter que les notes soient trop aiguës ou trop graves ?
-
-==>Repliement des transformation de gamme sur un intervalle
-\begin{enumerate}
-  \item Limiter l'écart de hauteur entre la note initiale et la note après la transformation.
-  \item Possibilité d'adapter le repliement au morceau
-\end{enumerate}
+\input{restrictionintervalle.tex}
 
   
 
