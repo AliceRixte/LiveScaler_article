@@ -99,24 +99,26 @@ Nous définissons ici une \emph{transformation de gamme} comme une fonction qui 
 \input{gammeparton.tex}
 \input{coeffmodal.tex}
 \subsection{Restriction de l'écart de hauteur}
+Comment éviter que les notes soient trop aiguës ou trop graves ?
+
+==>Repliement des transformation de gamme sur un intervalle
+\begin{enumerate}
+  \item Limiter l'écart de hauteur entre la note initiale et la note après la transformation.
+  \item Possibilité d'adapter le repliement au morceau
+\end{enumerate}
+
   
 
 \section{Implémentation des transformations de gamme : LiveScaler}
-\subsection{Justification du choix M4L /Ableton Live}
-\begin{enumerate}
-  \item Outil populaire dans le domaine de l'EDM
-  \item Facilité d'utilisation et intégration dans un environnement 
-  \item Prototypage aisé dans M4L
-  \item Communication entre les entités d'Ableton Live via messages M4L
-\end{enumerate}
+
 \subsection{Comment appliquer la transformation ?}
 Architecture chef d'orchestre/ instrument : 
 \begin{enumerate}
   \item Un seul changement de gamme est envoyé à tous les instruments simultanément
   \item Chaque instrument applique la transformation selon ses propres paramètres (e.g. intervalle de repliement)
   \item Deux types de paramètres : \begin{itemize}
-    \item Paramètres globaux envoyés sous la forme de messages à tous les instruments sous forme de message.
-    \item Paramètre propre à chaque instrument d'interprétation des messages reçus.
+    \item Paramètres globaux envoyés sous la forme de messages à tous les instruments sous forme de message. Par exemple : coefficients de la transformation affine.
+    \item Paramètre local propre à chaque instrument d'interprétation des messages reçus. Par exemple : intervalle de repliement pour rester dans la tessiture de l'instrument.
     \end{itemize}
 \end{enumerate}
 
@@ -127,16 +129,63 @@ Instantanément, car le flux MIDI en entrée fait office de "quantize".  ===> Qu
   \item Legato
   \item Retrigger
 \end{enumerate}
-===> Le choix se fait séparément pour chaque instrument
+===> Le choix se fait séparément pour chaque instrument (paramètre local)
 
-\subsection{Comment éviter que les notes soient trop aiguës ou trop graves ?}
-Repliement des transformation de gamme sur un intervalle
+
+\subsection{Justification du choix M4L /Ableton Live}
+L'architecture décrite précédemment est présentée comme un paradigme général, on présente ici l'implémentation concrète.
 \begin{enumerate}
-  \item Limiter l'écart de hauteur entre la note initiale et la note après la transformation.
-  \item Possibilité d'adapter le repliement au morceau
+  \item Outil populaire dans le domaine de l'EDM
+  \item Facilité d'utilisation et intégration dans un environnement 
+  \item Prototypage aisé dans M4L
+  \item Communication entre les entités d'Ableton Live via messages M4L
 \end{enumerate}
-===> le choix se fait séparément pour chaque instrument
-\section{Performance live avec LiveScaler}
+On pourrait aisément rendre l'usage plus général en codant un couple de VST fonctionnant sur le même principe.
+
+\section{Performance live }
+\subsection{Mapping sur le contrôleur MIDI ATOM}
+L'objectif est de pouvoir communiquer une transformation affine via un contrôleur MIDI en un seul geste musical.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.55\textwidth]{Figures/Pads-config.pdf}
+  \caption{Mapping de Live Scaler sur un contrôleur MIDI à $4\times 4$ pads}
+\end{figure}
+\begin{enumerate}
+  \item Les distances sur le tonnetz sont similaires aux distances entre les pads
+  \item Possibilité d'utilisation mélodique (on peut aisément jouer une gamme)
+  \item Ancre : transposition et modulations (ajouter au cadre théorique ?)
+  \item Historique : revenir aisément en arrière
+\end{enumerate}
+
+\subsection{Contrôle de la structure du morceau grâce à Push 2 et Ableton Live}
+Séparation de la structure (Push 2) et de l'harmonie ATOM
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{Figures/IMGP9899.jpg}
+  \caption{Contrôleurs MIDI utilisés pour la performance live : à gauche le Push 2 par Ableton (contrôle de la structure du morceau) et à droite ATOM par Presonus (contrôle de l'harmonie du morceau).}
+\end{figure}
+
+\subsection{Contraintes sur la composition}
+Liste des contraintes :
+\begin{enumerate}
+  \item Toutes les pistes doivent être MIDI : une piste audio ne serait pas impactée par les changements de gamme
+  \item Pauvreté harmonique : le morceau doit être relativement pauvre harmoniquement, idéalement rester sur le même accord tout le long.
+\end{enumerate}
+Préparation d'une session pour utiliser Live Scaler
+\begin{enumerate}
+  \item Passer toutes les pistes en MIDI (utiliser des sampleurs pour les pistes audio )
+  \item S'assurer qu'on ne sort pas de la tessiture des instruments
+  \item Mettre les synthétiseurs et sampleurs en mode legato au maximum.
+\end{enumerate}
+\subsection{Retour d'expérience}
+\begin{enumerate}
+  \item Anticiper ses gestes : la transformation de gamme doit être prise en compte avant le moment précis où l'on souhaite qu'elle arrive. Peut devenir très technique assez rapidement
+  \item Il est possible de faire concorder le geste avec le changement de gamme (malgré la latence et la faible avance nécessaire) : avantage par rapport au public
+  \item Live Scaler est particulièrement adapté à la psytrance et à l'EDM, qui sont initialement harmoniquement pauvre.
+\end{enumerate}
+
 
 \section{Travaux connexes}
 \subsection{Transformations de gamme en live coding}
@@ -160,11 +209,12 @@ Repliement des transformation de gamme sur un intervalle
 \end{enumerate}
 
 \section{Conclusion}
-
-\section{Annexe : mapping de LiveScaler}
-
-
-
+\subsection{Perpectives}
+\begin{enumerate}
+  \item Associer les changements de gammes à un contrôle d'image (VJing)
+  \item Proposer un macro contrôle pour le rythme
+  \item Obtenir le retour utilisateurs de musiciens et performeurs
+\end{enumerate}
 \newpage
 \printbibliography
 
