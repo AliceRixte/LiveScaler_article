@@ -10,8 +10,8 @@ LiveScaler fonctionne à la manière d'un orchestre dont le DJ serait le chef. C
 
 L'implémentation de LiveScaler est donc séparée en deux outils interdépendants : 
 \begin{enumerate}
-  \item une interface qui récupère les entrées de l'utilisateur (ici le DJ) et les convertit en paramètre de l'utilisateur que nous avons appelé \emph{LS-Director}, en référence à l'analogie avec l'orchestre
-  \item un plug-in MIDI appelé \emph{LS-Instrument} qui transforme le flux MIDI entrant en appliquant la transformation affine dont les paramètres ont été reçu de \emph{LS-Director} à toutes les notes du flux.
+  \item une interface qui récupère les entrées de l'utilisateur (ici le DJ) et les convertit en paramètre de l'utilisateur que nous avons appelé \emph{LS-Conductor}, en référence à l'analogie avec l'orchestre
+  \item un plug-in MIDI appelé \emph{LS-Instrument} qui transforme le flux MIDI entrant en appliquant la transformation affine dont les paramètres ont été reçu de \emph{LS-Conductor} à toutes les notes du flux.
 \end{enumerate}
 La Figure \ref{Fig:archi} illustre l'architecture globale de LiveScaler.
 
