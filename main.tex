@@ -101,14 +101,15 @@ Un bon exemple de transformation de gamme est la transposition : à chaque note 
 \input{inversions.tex}
 \input{gammeparton.tex}
 \input{coeffmodal.tex}
-\input{restrictionintervalle.tex}
 \input{ancres.tex}
+\input{restrictionintervalle.tex}
 
-  
+\section{Implémentation des transformations affines : LiveScaler}
+Nous allons à présent nous intéresser à l'implémentation des transformations affines présentées au début de cet article pour piloter en live l'harmonie d'un morceau de musique électronique. 
 
-\section{Implémentation des transformations de gamme : LiveScaler}
+\subsection{Architecture de LiveScaler}
+LiveScaler utilise une architecture évoquant
 
-\subsection{Comment appliquer la transformation ?}
 Architecture chef d'orchestre/ instrument : 
 \begin{enumerate}
   \item Un seul changement de gamme est envoyé à tous les instruments simultanément

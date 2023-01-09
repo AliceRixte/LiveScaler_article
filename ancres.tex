@@ -1,1 +1,31 @@
 \subsection{Ancres}
+
+Les paramètres des transformations $A\langle \mu, \tau \rangle$ dépendent de la tonalité dans laquelle on se trouve. Ainsi le passage à le relative mineure est $A\langle -1,4 \rangle$ lorsque la tonalité est Do majeur mais correspond à $A\langle -1,6 \rangle$ lorsqu'on est en Sol majeur.
+
+Pour éviter les confusions, on ajoute un troisième paramètre $\alpha$, appelé \emph{ancre} à nos transformations affines. L'ancre correspond à la note qui sert de référence pour appliquer la transformation affine considérée, c'est-à-dire à $0$ dans l'espace $\mathbb{Z}$ des hauteurs de notes. Pour une transformation quelconqe $T:\mathbb{Z} \rightarrow \mathbb{Z}$ et une ancre $\alpha$, on obtient une nouvelle transformation $T\langle \alpha \rangle = A\langle 1, \alpha \rangle \circ T \circ A\langle 1, -\alpha \rangle $ centrée en $\alpha$. 
+
+
+
+S'il est clair que les ancres n'ajoutent aucune expressivité à nos transformations affines, elles permettent de rendre la modulation et la transposition avec LiveScaler extrêmement intuitives. En prenant pour référence une gamme majeure dont la tonique est donnée par l'ancre $\alpha$, nous pouvons nommer certaines transformations affines en fonction de l'image de l'accord de tonique. Ainsi les transpositions de $7$ demi-tons vers le haut  $A\langle 1, 7, \alpha\rangle$ envoient l'accord de tonique sur l'accord de dominante et sont donc notées \emph{V}. Le passage à la relative mineure $A\langle -1, 4, \alpha \rangle$ correspond ainsi à \emph{vi}. La Table \ref{tab:degrees} donne les transformations affines pour chaque triade d'une gamme majeure.
+
+\begin{table}[htbp]
+  \centering
+  \rowcolors{2}{gray!25}{white}
+  \begin{tabular}{ccc}
+    \rowcolor{gray!50}
+    Degré & Transformation affine\\
+    \writechord{I} & $A\langle ~~1, ~~0, \alpha \rangle$\\
+    \writechord{II} &  $A\langle ~~1, ~~2, \alpha \rangle$\\
+    \writechord{iii} &  $A\langle -1, -1, \alpha \rangle$\\
+    \writechord{IV} &  $A\langle ~~1,~~ 5, \alpha \rangle$\\
+    \writechord{V} &  $A\langle ~~ 1, ~~7, \alpha \rangle$\\
+    \writechord{vi}& $A\langle -1, ~~4, \alpha \rangle$\\
+    \writechord{vii} & $A\langle -1, ~~6, \alpha \rangle$\\
+  \end{tabular}
+  \caption{ Correspondances entre triades d'une gamme majeure et transformations de gamme\label{tab:degrees} } 
+\end{table}
+
+
+
+
+
