@@ -1,0 +1,19 @@
+\subsection{Architecture de LiveScaler}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{Figures/architecture-LS.pdf}
+  \caption{Architecture de Live Scaler\label{Fig:archi}}
+\end{figure}
+
+LiveScaler fonctionne à la manière d'un orchestre dont le DJ serait le chef. Chaque piste MIDI contenant un instrument virtuel (synthétiseur, sampleur, etc.) est un instrumentiste de l'orchestre. On souhaite que sur un geste du DJ, chaque instrument virtuel interprète différemment sa partition, c'est à dire le flux MIDI qu'il reçoît. Dans le cadre de LiveScaler, le DJ envoie les paramètres d'une transformation affine à tous les instruments simultanément et ceux-ci doivent appliquer cette transformation dès qu'ils la reçoivent.
+
+L'implémentation de LiveScaler est donc séparée en deux outils interdépendants : 
+\begin{enumerate}
+  \item une interface qui récupère les entrées de l'utilisateur (ici le DJ) et les convertit en paramètre de l'utilisateur que nous avons appelé \emph{LS-Director}, en référence à l'analogie avec l'orchestre
+  \item un plug-in MIDI appelé \emph{LS-Instrument} qui transforme le flux MIDI entrant en appliquant la transformation affine dont les paramètres ont été reçu de \emph{LS-Director} à toutes les notes du flux.
+\end{enumerate}
+La Figure \ref{Fig:archi} illustre l'architecture globale de LiveScaler.
+
+On distingue également les paramètres \emph{locaux}, qui sont propres à chaque instrument, et les paramètres \emph{globaux}, qui sont reçus du chef d'orchestre et donc communs à tous les instruments. Dans le cadre des transformations affines, les paramètres $\mu$,$\tau$ et $\alpha$ sont globaux, il correspondent dans une certaine mesure à l'harmonie actuelle du morceau. Quant à $\beta^-$ et $\beta^+$, ils sont propres à chaque instrument et s'adaptent à sa tessiture.
+
