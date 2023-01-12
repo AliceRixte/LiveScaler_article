@@ -3,16 +3,16 @@ Jusqu'ici, nous avons présenté les transformations affines en nous concentrant
 
 Afin d'éviter de sortir de la tessiture de l'instrument, ou même du spectre auditif, nous allons restreindre l'écart entre la note initiale et son image par une transformation de gamme quelconque $T : \mathbb{Z}\rightarrow \mathbb{Z}$. On souhaite alors définir à partir de $T$ une nouvelle transformation $T\langle \beta^-, \beta^+\rangle : \mathbb{Z}\rightarrow \mathbb{Z}$ telle que $ - \beta^- \leq T\langle \beta^-, \beta^+\rangle(n) \leq \beta ^+$, où $\beta^+$ (resp. $\beta^-$) est l'interval montant (resp. descendant) maximum entre la note initiale et son image.
 
-Posons $\beta = \beta^- + \beta^+$. Dans la plupart des cas on souhaite que $\beta = b = 12$, mais il peut être intéressant de choisir par exemple $\beta  = 2b$, pour préserver le caractère montant ou descendant d'une ligne mélodique.
+Posons $\beta = \beta^- + \beta^+$.  Dans la plupart des cas on souhaite que $\beta = b = 12$ , mais il peut être intéressant de choisir par exemple $\beta  = 2b$, pour préserver le caractère montant ou descendant d'une ligne mélodique.
 
-Soit $r = |T(n) - n | \mod \beta$ le reste de la division euclidienne de  $|T(n) - n |$ par $\beta$. On pose alors 
+Soit $r = |T(n) - n | \mod b$ le reste de la division euclidienne de  $|T(n) - n |$ par $b$. On pose alors 
 $$
-T\langle \beta^+, \beta^- \rangle : n \mapsto \begin{cases}
+T\langle b, \beta^+, \beta^- \rangle : n \mapsto \begin{cases}
   n + r & \text{si $r \leq \beta^+$}\\
   n + r - \beta & \text{sinon}
 \end{cases}
 $$
 
-Nous pouvons maintenant appliquer cette restriction de l'intervalle de hauteur à nos fonctions affines. On obtient alors un sous-ensemble contraint de transformations de gamme de la forme $A\langle \mu, \tau, \alpha, \beta^-, \beta^+\rangle$. Ce sont exactement ces transformations qui sont implémentées dans Live Scaler.
+Nous pouvons maintenant appliquer cette restriction de l'intervalle de hauteur à nos fonctions affines. On obtient alors un sous-ensemble contraint de transformations de gamme de la forme $A\langle \mu, \tau, \alpha, b, \beta^-, \beta^+\rangle$. Ce sont exactement ces transformations qui sont implémentées dans Live Scaler.
   
 

@@ -1,0 +1,13 @@
+\subsection{Quand appliquer les transformations ? }
+Lorsque \emph{LS-Instrument} reçoit la commande d'appliquer une nouvelle transformation de gamme, il est sensé l'appliquer instantanément. Lorsque l'instrument n'est pas en train de jouer, cela ne pose aucune difficulté : il appliquera la transformation au prochain message MIDI qu'il recevra. Il se peut en revanche que l'instrument soit déjà en train de jouer une note. LiveScaler propose $3$ manières de réagir dans une telle situation. 
+
+
+\begin{enumerate}
+  \item \emph{Stop} : toutes les notes en train d'être jouées sont instantanément arrêtées : on envoie un message Note-off pour chaque note en cours. L'instrument reprendra son jeu, en appliquant la nouvelle transformation, au prochain message MIDI qu'il recevra. Cette option est particulièrement adaptée aux instruments dont la durée des notes est courte. 
+  \item \emph{Legato} : l'instrument opère un \emph{legato} entre la ou les notes en train d'être jouées et le résultat de leur image par la nouvelle transformation reçu. Cette option est particulièrement utile pour les instruments dont la durée des notes est longue, sur les basses par exemple. Elle présuppose en revanche que l'instrument virtuel a été configuré en mode legato, ce qui n'est pas toujours possible.
+  \item \emph{Retrigger} : chaque note en cours est stoppée et instantanément suivie de cette note transformée. Cette méthode a l'avantage de ne rien présupposer sur la configuration du synthétiseur qui recevra les messages MIDI mais déclenchera une nouvelle attaque, ce qui peut créer des artéfacts assez déplaisants lorsque cette seconde attaque arrive une fraction de seconde après la première attaque.
+  
+  
+\end{enumerate}
+
+Le choix entre ces trois modes se fait de manière locale, deux instances de \emph{LS-Instrument} pourront donc réagir différemment.
