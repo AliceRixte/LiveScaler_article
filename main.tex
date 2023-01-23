@@ -108,18 +108,12 @@ Un bon exemple de transformation de gamme est la transposition : à chaque note 
 Nous allons à présent nous intéresser à l'implémentation des transformations affines présentées au début de cet article pour piloter en live l'harmonie d'un morceau de musique électronique. 
 
 \input{architecture}
-\input{timing.tex}
+\input{timing}
+\input{implementation}
 
 
-\subsection{Justification du choix M4L /Ableton Live}
-L'architecture décrite précédemment est présentée comme un paradigme général, on présente ici l'implémentation concrète.
-\begin{enumerate}
-  \item Outil populaire dans le domaine de l'EDM
-  \item Facilité d'utilisation et intégration dans un environnement 
-  \item Prototypage aisé dans M4L
-  \item Communication entre les entités d'Ableton Live via messages M4L
-\end{enumerate}
-On pourrait aisément rendre l'usage plus général en codant un couple de VST fonctionnant sur le même principe.
+
+
 
 \section{Performance live }
 \subsection{Mapping sur le contrôleur MIDI ATOM}
