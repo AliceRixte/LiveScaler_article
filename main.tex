@@ -96,42 +96,19 @@ Nous définissons ici une \emph{transformation de gamme} comme une fonction qui 
 Un bon exemple de transformation de gamme est la transposition : à chaque note $n$ on associe la note $n+\tau$  décalée de $\tau$ demi-tons vers l'aigu lorsque $\tau$ est positif et vers le grave lorsque $\tau$ est négatif. Ainsi, une transposition de $\tau$ demi-tons est représentée par la transformation de gamme $ n \mapsto n+\tau$ (voir Figure \ref{fig:transp}).
 
 
-%\input{affines.tex}
-%\input{transpositions.tex}
-%\input{inversions.tex}
-%\input{gammeparton.tex}
-%\input{coeffmodal.tex}
-%\input{ancres.tex}
-%\input{restrictionintervalle.tex}
+\input{affines.tex}
+\input{transpositions.tex}
+\input{inversions.tex}
+\input{gammeparton.tex}
+\input{coeffmodal.tex}
+\input{ancres.tex}
+\input{restrictionintervalle.tex}
 
 \section{Implémentation des transformations affines : LiveScaler}
 Nous allons à présent nous intéresser à l'implémentation des transformations affines présentées au début de cet article pour piloter en live l'harmonie d'un morceau de musique électronique. 
 
 \input{architecture}
-
-\begin{comment}
-  
-
-
-Architecture chef d'orchestre/ instrument : 
-\begin{enumerate}
-  \item Un seul changement de gamme est envoyé à tous les instruments simultanément
-  \item Chaque instrument applique la transformation selon ses propres paramètres (e.g. intervalle de repliement)
-  \item Deux types de paramètres : \begin{itemize}
-    \item Paramètres globaux envoyés sous la forme de messages à tous les instruments sous forme de message. Par exemple : coefficients de la transformation affine.
-    \item Paramètre local propre à chaque instrument d'interprétation des messages reçus. Par exemple : intervalle de repliement pour rester dans la tessiture de l'instrument.
-    \end{itemize}
-\end{enumerate}
-\end{comment}
-
-\subsection{Quand appliquer la transformation ? }
-Instantanément, car le flux MIDI en entrée fait office de "quantize".  ===> Quid des notes en cours ?
-\begin{enumerate}
-  \item On les arrête
-  \item Legato
-  \item Retrigger
-\end{enumerate}
-===> Le choix se fait séparément pour chaque instrument (paramètre local)
+\input{timing.tex}
 
 
 \subsection{Justification du choix M4L /Ableton Live}
