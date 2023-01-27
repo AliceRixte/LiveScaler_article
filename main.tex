@@ -59,6 +59,29 @@
 
 
 
+\newcommand{\LSHist}{\texttt{Hist} }
+\newcommand{\LSMod}{\texttt{Mod} }
+\newcommand{\LSpp}{\texttt{++} }
+\newcommand{\LSmm}{\texttt{-\hspace{0.5pt}-} }
+\newcommand{\LSI}{\writechord{I}}
+\newcommand{\LSII}{\writechord{II}}
+\newcommand{\LSIII}{\writechord{III}}
+\newcommand{\LSIV}{\writechord{IV}}
+\newcommand{\LSV}{\writechord{V}}
+\newcommand{\LSVI}{\writechord{VI}}
+\newcommand{\LSVII}{\writechord{VII}}
+\newcommand{\LSi}{\writechord{i}}
+\newcommand{\LSii}{\writechord{ii}}
+\newcommand{\LSiii}{\writechord{iii}}
+\newcommand{\LSiv}{\writechord{iv}}
+\newcommand{\LSv}{\writechord{v}}
+\newcommand{\LSvi}{\writechord{vi}}
+\newcommand{\LSvii}{\writechord{vii}}
+\newcommand{\LStwo}{\texttt{2}}
+\newcommand{\LSthree}{\texttt{3}}
+\newcommand{\LSfour}{\texttt{4}}
+\newcommand{\LSMm}{\texttt{M}$\leftrightarrow$\texttt{m} }
+
 
 
 \title{LiveScaler}
@@ -116,20 +139,9 @@ Nous allons à présent nous intéresser à l'implémentation des transformation
 
 
 \section{Performance live }
-\subsection{Mapping sur le contrôleur MIDI ATOM}
-L'objectif est de pouvoir communiquer une transformation affine via un contrôleur MIDI en un seul geste musical.
+Afin de tester la pertinence des transformations proposées, j'ai utilisé LiveScaler pour créer \emph{Escape}, une performance live de trance psychédélique. J'ai notamment pu proposer cette performance en publique pour la soutenance de mon mémoire de master en Septembre 2019. Dans cette section, j'expliquerai la manière dont j'ai procédé pour cette mise en pratique et je donnerai mes impressions subjectives en tant qu'utilisatrice de \emph{LiveScaler}.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.55\textwidth]{Figures/Pads-config.pdf}
-  \caption{Mapping de Live Scaler sur un contrôleur MIDI à $4\times 4$ pads}
-\end{figure}
-\begin{enumerate}
-  \item Les distances sur le tonnetz sont similaires aux distances entre les pads
-  \item Possibilité d'utilisation mélodique (on peut aisément jouer une gamme)
-  \item Ancre : transposition et modulations (ajouter au cadre théorique ?)
-  \item Historique : revenir aisément en arrière
-\end{enumerate}
+\input{mapping}
 
 \subsection{Contrôle de la structure du morceau grâce à Push 2 et Ableton Live}
 Séparation de la structure (Push 2) et de l'harmonie ATOM
