@@ -138,32 +138,12 @@ Nous allons à présent nous intéresser à l'implémentation des transformation
 
 
 
-\section{Performance live }
+\section{Escaper : une performance avec \emph{LiveScaler} }
 Afin de tester la pertinence des transformations proposées, j'ai utilisé LiveScaler pour créer \emph{Escape}, une performance live de trance psychédélique. J'ai notamment pu proposer cette performance en publique pour la soutenance de mon mémoire de master en Septembre 2019. Dans cette section, j'expliquerai la manière dont j'ai procédé pour cette mise en pratique et je donnerai mes impressions subjectives en tant qu'utilisatrice de \emph{LiveScaler}.
-
+\input{controleurs}
 \input{mapping}
+\input{composition}
 
-\subsection{Contrôle de la structure du morceau grâce à Push 2 et Ableton Live}
-Séparation de la structure (Push 2) et de l'harmonie ATOM
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\textwidth]{Figures/IMGP9899.jpg}
-  \caption{Contrôleurs MIDI utilisés pour la performance live : à gauche le Push 2 par Ableton (contrôle de la structure du morceau) et à droite ATOM par Presonus (contrôle de l'harmonie du morceau).}
-\end{figure}
-
-\subsection{Contraintes sur la composition}
-Liste des contraintes :
-\begin{enumerate}
-  \item Toutes les pistes doivent être MIDI : une piste audio ne serait pas impactée par les changements de gamme
-  \item Pauvreté harmonique : le morceau doit être relativement pauvre harmoniquement, idéalement rester sur le même accord tout le long.
-\end{enumerate}
-Préparation d'une session pour utiliser Live Scaler
-\begin{enumerate}
-  \item Passer toutes les pistes en MIDI (utiliser des sampleurs pour les pistes audio )
-  \item S'assurer qu'on ne sort pas de la tessiture des instruments
-  \item Mettre les synthétiseurs et sampleurs en mode legato au maximum.
-\end{enumerate}
 \subsection{Retour d'expérience}
 \begin{enumerate}
   \item Anticiper ses gestes : la transformation de gamme doit être prise en compte avant le moment précis où l'on souhaite qu'elle arrive. Peut devenir très technique assez rapidement
