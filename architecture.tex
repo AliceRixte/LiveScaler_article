@@ -10,10 +10,10 @@ LiveScaler fonctionne à la manière d'un orchestre dont le DJ serait le chef. C
 
 L'implémentation de LiveScaler est donc séparée en deux outils interdépendants : 
 \begin{enumerate}
-  \item une interface (appelée \emph{Conductor}, en référence à l'analogie avec l'orchestre) qui récupère les entrées de l'utilisateur (ici le DJ) et les convertit en paramètres d'une transformation affine et envoie ces paramètres à toutes les insances de \emph{Instrument}.
+  \item une interface (appelée \emph{Conductor}, en référence à l'analogie avec l'orchestre) qui récupère les entrées de l'utilisateur (ici le DJ) et les convertit en paramètres d'une transformation affine puis envoie ces paramètres à toutes les instances de \emph{Instrument}.
   \item un plug-in MIDI appelé \emph{Instrument} qui transforme le flux MIDI entrant en appliquant à toutes les notes la transformation affine dont les paramètres ont été reçus de \emph{Conductor}.
 \end{enumerate}
 La Figure \ref{Fig:archi} illustre l'architecture globale de LiveScaler.
 
-On distingue également les paramètres \emph{locaux}, qui sont propres à chaque instrument, et les paramètres \emph{globaux}, qui sont reçus du chef d'orchestre et donc communs à tous les instruments. Dans le cadre des transformations affines, les paramètres $\mu$,$\tau$, $\alpha$  et $b$ sont globaux, il correspondent dans une certaine mesure à l'harmonie actuelle du morceau. Quant à $\beta^-$ et $\beta^+$, ils sont propres à chaque instrument et s'adaptent à sa tessiture.
+On distingue également les paramètres \emph{locaux}, qui sont propres à chaque instrument, et les paramètres \emph{globaux}, qui sont reçus du chef d'orchestre et donc communs à tous les instruments. Dans le cadre des transformations affines, les paramètres $\mu$, $\tau$, $\alpha$  et $b$ sont globaux, il correspondent dans une certaine mesure à l'harmonie actuelle du morceau. Quant à $\delta^-$ et $\delta^+$, ils sont locaux et s'adaptent à la tessiture de l'instrument.
 

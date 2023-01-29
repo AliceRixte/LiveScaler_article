@@ -1,18 +1,18 @@
 \subsection{Restriction de l'écart de hauteur}
 Jusqu'ici, nous avons présenté les transformations affines en nous concentrant sur leur action sur les classes de hauteur. Dans la pratique, si nous appliquons directement $A\langle -1,4 \rangle$ à la note  $\writechord{A}_3$ qui correspond au La 440Hz et à la note MIDI $53$, on obtient $A\langle -1,4 \rangle(\writechord{A}_3) = A\langle -1,4 \rangle(57) = -53 = \writechord{G}_{-5}$, qui est bien trop grave pour être audible. 
 
-Afin d'éviter de sortir de la tessiture de l'instrument, ou même du spectre auditif, nous allons restreindre l'écart entre la note initiale et son image par une transformation de gamme quelconque $T : \mathbb{Z}\rightarrow \mathbb{Z}$. On souhaite alors définir à partir de $T$ une nouvelle transformation $T\langle \beta^-, \beta^+\rangle : \mathbb{Z}\rightarrow \mathbb{Z}$ telle que $ - \beta^- \leq T\langle \beta^-, \beta^+\rangle(n) \leq \beta ^+$, où $\beta^+$ (resp. $\beta^-$) est l'interval montant (resp. descendant) maximum entre la note initiale et son image.
+Afin d'éviter de sortir de la tessiture de l'instrument, ou même du spectre auditif, nous allons restreindre l'écart entre la note initiale et son image par une transformation de gamme quelconque $T : \mathbb{Z}\rightarrow \mathbb{Z}$. On souhaite alors définir à partir de $T$ une nouvelle transformation $T\langle \delta^-, \delta^+\rangle : \mathbb{Z}\rightarrow \mathbb{Z}$ telle que $ - \delta^- \leq T\langle \delta^-, \delta^+\rangle(n) \leq \delta ^+$, où $\delta^+$ (resp. $\delta^-$) est l'interval montant (resp. descendant) maximum entre la note initiale et son image.
 
-Posons $\beta = \beta^- + \beta^+$.  Dans la plupart des cas on souhaite que $\beta = b = 12$ , mais il peut être intéressant de choisir par exemple $\beta  = 2b$, pour préserver le caractère montant ou descendant d'une ligne mélodique.
+Posons $\delta = \delta^- + \delta^+$.  Dans la plupart des cas on souhaite que $\delta = b = 12$ , mais il peut être intéressant de choisir par exemple $\delta  = 2b$, pour préserver le caractère montant ou descendant d'une ligne mélodique.
 
 Soit $r = |T(n) - n | \mod b$ le reste de la division euclidienne de  $|T(n) - n |$ par $b$. On pose alors 
 $$
-T\langle b, \beta^+, \beta^- \rangle : n \mapsto \begin{cases}
-  n + r & \text{si $r \leq \beta^+$}\\
-  n + r - \beta & \text{sinon}
+T\langle b, \delta^+, \delta^- \rangle : n \mapsto \begin{cases}
+  n + r & \text{si $r \leq \delta^+$}\\
+  n + r - \delta & \text{sinon}
 \end{cases}
 $$
 
-Nous pouvons maintenant appliquer cette restriction de l'intervalle de hauteur à nos fonctions affines. On obtient alors un sous-ensemble contraint de transformations de gamme de la forme $A\langle \mu, \tau, \alpha, b, \beta^-, \beta^+\rangle$. Ce sont exactement ces transformations qui sont implémentées dans Live Scaler.
+Nous pouvons maintenant appliquer cette restriction de l'intervalle de hauteur à nos fonctions affines. On obtient alors un sous-ensemble contraint de transformations de gamme de la forme $A\langle \mu, \tau, \alpha, b, \delta^-, \delta^+\rangle$. Ce sont exactement ces transformations qui sont implémentées dans Live Scaler.
   
 
