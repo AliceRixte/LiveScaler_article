@@ -1,0 +1,35 @@
+\subsection{Théorie transformationnelle}
+\begin{comment}
+\begin{enumerate}
+  \item Les transformations affines sont une généralisation 
+  \begin{enumerate}
+    \item des Tonnetz
+    \item des k-Nets
+  \end{enumerate}
+  \item ces transformations sont étudiées et utilisées surtout dans un contexte d'analyse et d'aide à la composition (OpenMusic)
+\end{enumerate}
+\end{comment}
+
+La théorie transformationnelle (pour une introduction généraliste du point de vue mathématique, voir \cite{andreatta2008calcul}, et du point de vue musicologique, lire \cite{andreatta2014introduction}) prend ses racines dans la \emph{Set-Theory}, qui se concentre sur la notion de classe de hauteur, c'est à dire un ensemble de notes identiques à l'octave près (\cite{forte1973structure}). Elle propose une approche plus algébrique que la \emph{Set-Theory}, en se concentrant, entre autre sur la notion de transformation entre ensembles de classes de hauteurs (\cite{lewin1987generalized}).
+
+Les transformations affines sont directement inspirées de la théorie transformationnelle, et plus particulièrement des automorphismes du groupe T/I présentés par \textcite{lewin1990klumpenhouwer}. L'unique différence avec ceux-ci est que les transformations affines ne sont pas nécessairement bijectives et autorisent donc un coefficient modal qui ne soit pas nécessairement premier avec $12$. Les transformations affines sont donc une vision plus terre à terre des automorphismes proposés par Lewin et Klumpenhouwer, tout en proposant quelques transformations supplémentaires sortant du système tonal.
+
+Plusieurs outils s'appuient plus ou moins explicitement sur les représentations de la théorie transformationnelle, en particulier OpenMusic, qui propose une aide à la composition directement inspirée de cell-ci (\cite{andreatta2003implementing}, \cite{andreatta2003formalisation}). Depuis une dizaine d'année, OpenMusic essaie de concilier l'approche hors du temps (approche guidée par les demandes) de l'aide à la composition avec l'approche temps-réel propre à la performance (\cite{bresson2014reactive}, \cite{bresson2017next}). Plus récemment, Bach propose lui aussi cette approche hybride mais en partant de Max MSP, un language de programmation fondamentalement temps-réel et guidé par les données (\cite{agostini2021programming}).
+
+Les outils évoqués ci-dessus offrent une grande flexibilité pour appliquer des transformations potentiellement bien plus sophistiquées que les transformations affines, et sont a priori tous capables de le faire en live. Pour autant, cela demanderait un grand travail préparatoire de programmation et de mapping avant d'arriver à un résultat fluide. C'est exactement ce travail qui est fait par LiveScaler, mais sur un nombre restreint de transformations, ici jugées pertinentes. LiveScaler sacrifie donc la flexibilité dans le choix des transformations au profit d'une utilisation immédiate, et sans connaissances de progammation requises, pour faire de la musique live.
+
+\subsection{Live Coding}
+
+Une approche intermédiaire offrant plus de flexibilité, mais moins d'immédiateté est celle du \emph{live coding}. Pendant une performance de \emph{live coding}, le musicien utilise un langage de programmation dédié pour coder en live un morceau de musique (\cite{blackwell2022live}). Tidal, proposé par \textcite{mclean2010tidal} permet de manipuler et transformer des motifs en live. Il reprend notamment les transformations de \textcite{spiegel1981manipulations} et plus particulièrement les transpositions et inversions (qui correspondent aux coefficients modaux $1$ et $-1$ dans le paradigme des transformations affines proposé ici).
+
+Si une des revendications initialement associées à cette pratique était de s'affranchir des contraintes et rigidités des stations audionumériques telle qu'Ableton Live (\cite{collins2003live}), l'ajout de langages de scripting  ainsi que la posibilité de contrôler les stations numériques \footnote{On peut par exemple piloter  Ableton Live et FL Studio avec Python, Logic et Bitwig avec JavaScript.} avec des langages de programmation graphique haut niveau \footnote{On trouve dans les stations audionumériques commerciales de plus en plus de langages de "\emph{patching}" permettant de contrôler le logiciel ou de créer des plugins audio de manière modulaire : voir par exemple Max for Live pour Ableton Live, FL FlowStone pour FL Studio, The Grid pour Bitwig.} semblent avoir développé leur usage dans les pratiques de musique algorithmique live (\cite{collins2014algorave}). Ces pratiques, dans lesquelles s'incrit le présent article, permettent de combiner d'une part la flexibilité et la liberté qu'offrent un langage de programmation et d'autre part l'accès aux outils de production commerciaux utilisés par l'industrie de la musique. C'est particulièrement important dans le cadre de l'EDM\footnote{\emph{Electronic Dance Music}, un terme parapluie regroupant de nombreux genres de musique électronique tels que la house, la techno, la trance, la drum n bass, le dubstep, etc. }, qui utilise intensivement ces outils de production sophistiqués (\cite{fraser2012spaces}).
+
+
+\subsection{Macro contrôle d'un morceau de musique électronique}
+\begin{enumerate}
+  \item "Changing musical emotion"
+\end{enumerate}
+
+
+
+
