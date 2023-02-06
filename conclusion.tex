@@ -1,9 +1,5 @@
-Tous les outils cités plus haut offrent une grande flexibilité pour appliquer des transformations potentiellement bien plus sophistiquées que les transformatiions affines, et sont a priori tous capables de le faire en live. Une spécificité de LiveScaler est l'idée de d'utiliser ces transformations comme un instrument de musique, et de les rendre directement accessibles aux musiciens même s'ils n'ont aucune affinité avec la programmation.
+Nous avons présenté LiveScaler, qui propose de nouvelles modalités pour la musique électronique live. LiveScaler utilise pour l'instant un nombre restreint de transformations MIDI, les transformations affines, qui peuvent être appliquées en live. En particulier, cet outil peut être utilisé dans un contexte EDM, proposant ainsi une alternative ou un complément aux techniques standard de \emph{DJing}.
 
-Utiliser la flexibilité et la rapidité de bell (\cite{agostini2020programmer}). Utiliser un meilleur protocole que MIDI (OSC,MP \cite{goudard2017mapping})
-\subsection{Perpectives}
-\begin{enumerate}
-  \item Associer les changements de gammes à un contrôle d'image (VJing)
-  \item Proposer un macro contrôle pour le rythme
-  \item Obtenir le retour utilisateurs de musiciens et performeurs
-\end{enumerate}
+Plusieurs améliorations techniques pourraient être proposées pour améliorer LiveScaler. En particulier, il serait pertinent de le rendre compatible avec n'importe quel DAW, et pas seulement Ableton Live. Une solution sera de rendre développer un plugin VST ou LV2 pour LiveScaler. De plus, le protocole MIDI étant contraignant, rendre LiveScaler compatible avec un protocole plus flexible tel que OSC (\cite{wright2005open}) ou MP (\cite{goudard2017mapping}), qui serait particulièrement adapté à cette application.
+
+Bien que LiveScaler propose déjà la possibilité d'ajouter manuellement des transformations de gamme quelconque, ce mécanisme est laborieux et mérite d'être amélioré. Enfin, nous aimerions pouvoir agir sur d'autres paramètres que la hauteur des notes, en particulier le rythme, le timbre, ou même contrôler simultanément des transformations musicales et vidéos. C'est sur ces axes que seront concentrés nos recherches futures, tout en restant sur le même paradigme de performance live que celui proposé ici.
