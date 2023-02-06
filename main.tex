@@ -1,9 +1,16 @@
-\documentclass[french,12pt]{article}
+\documentclass{article}
+\usepackage{jim,amsmath}
 \usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
 \usepackage[T1]{fontenc}
-\usepackage{babel}
-\usepackage{eurosym}
-\usepackage[affil-it]{authblk}
+
+
+%\documentclass[french,12pt]{article}
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{babel}
+%\usepackage{eurosym}
+%\usepackage[affil-it]{authblk}
 
 \usepackage[table]{xcolor}
 
@@ -15,9 +22,9 @@
 
 \usepackage{leadsheets}
 
-\usepackage[top=4cm, bottom=4cm, left=3cm, right=3cm]{geometry}
-\usepackage[fencedCode,inlineFootnotes,citations,definitionLists,hashEnumerators,smartEllipses,hybrid,pipeTables, tableCaptions]{markdown}
-\usepackage{keyval}
+%\usepackage[top=4cm, bottom=4cm, left=3cm, right=3cm]{geometry}
+%\usepackage[fencedCode,inlineFootnotes,citations,definitionLists,hashEnumerators,smartEllipses,hybrid,pipeTables, tableCaptions]{markdown}
+%\usepackage{keyval}
 
 \usepackage[backend=biber,style=alphabetic,citestyle=authoryear-comp]{biblatex}
 \addbibresource{refs.bib}
@@ -82,17 +89,30 @@
 \newcommand{\LSfour}{\texttt{4}}
 \newcommand{\LSMm}{\texttt{M}$\leftrightarrow$\texttt{m} }
 
+\DeclareRobustCommand{\svdots}{% s for `scaling'
+  \vcenter{%
+    \offinterlineskip
+    \hbox{.}
+    \vskip0.25\normalbaselineskip
+    \hbox{.}
+    \vskip0.25\normalbaselineskip
+    \hbox{.}%
+  }%
+}
 
 
 \title{LiveScaler : Contrôler en live l'harmonie d'un morceau de musique électronique}
-\author{Alice Rixte}
+\oneauthor
+ {Alice Rixte} {Université de Bordeaux \\ alice.rixte@u-bordeaux.fr }
+
 \begin{document}  
 
 \maketitle
 
-\tableofcontents
-
-\section*{Résumé}
+%\tableofcontents
+\begin{abstract}
+  Le résumé doit être placé en haut de la colonne gauche et doit contenir entre 150 et 200 mots.
+\end{abstract}
 
 \section{Introduction}
 \input{intro}

@@ -1,4 +1,16 @@
 \subsection{Implémentation avec Max for Live}
+\begin{figure*}[htbp]
+  \centering
+  \begin{subfigure}{0.83\textwidth}
+    \includegraphics{Figures/LS-Conductor-UI.png}
+  \end{subfigure}
+  \begin{subfigure}{0.15\textwidth}
+    \includegraphics{Figures/LS-Instrument-UI.png}
+  \end{subfigure}
+  
+  \caption{Interface graphique de LiveScaler (\emph{Conductor} à gauche  et  \emph{Instrument} à droite) }
+  \label{fig:LiveScalerUI}
+\end{figure*}
 
 \begin{comment}
   L'architecture décrite précédemment est présentée comme un paradigme général, on présente ici l'implémentation concrète.
@@ -15,14 +27,7 @@ L'objectif principal de l'implémentation proposée était de pouvoir expérimen
 
 Max for Live est une intégration du  langage de progammation graphique Max MSP à Ableton Live. On peut aisément communiquer avec les différences instances du logiciel, ce qui permet dans LiveScaler à \emph{Conductor} de contrôler les \emph{Instruments} avec une faible latence.
 
-\begin{figure}[htbp]
-  \centering
-  \begin{subfigure}{0.86\textwidth}
-    \includegraphics{Figures/LS-Conductor-UI.png}
-  \end{subfigure}
-  \begin{subfigure}{0.13\textwidth}
-    \includegraphics{Figures/LS-Instrument-UI.png}
-    
-  \end{subfigure}
-  \caption{Interface graphique de LiveScaler (\emph{Conductor} à gauche et \emph{Instrument} à droite)}
-\end{figure}
+
+
+
+

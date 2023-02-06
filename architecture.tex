@@ -2,8 +2,8 @@
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\textwidth]{Figures/architecture-LS.pdf}
-  \caption{Architecture de Live Scaler\label{Fig:archi}}
+	\includegraphics[width=\columnwidth]{Figures/architecture-LS.pdf}
+  \caption{Architecture de Live Scaler\label{fig:archi}}
 \end{figure}
 
 LiveScaler fonctionne à la manière d'un orchestre dont le DJ serait le chef. Chaque piste MIDI contenant un instrument virtuel (synthétiseur, sampleur, etc.) est un instrumentiste de l'orchestre. On souhaite que sur un geste du DJ, chaque instrument virtuel interprète différemment sa partition, c'est à dire le flux MIDI qu'il reçoît. Dans le cadre de LiveScaler, le DJ envoie les paramètres d'une transformation affine à tous les instruments simultanément et ceux-ci doivent appliquer cette transformation dès qu'ils la reçoivent.
@@ -13,7 +13,7 @@ L'implémentation de LiveScaler est donc séparée en deux outils interdépendan
   \item une interface (appelée \emph{Conductor}, en référence à l'analogie avec l'orchestre) qui récupère les entrées de l'utilisateur (ici le DJ) et les convertit en paramètres d'une transformation affine puis envoie ces paramètres à toutes les instances de \emph{Instrument}.
   \item un plug-in MIDI appelé \emph{Instrument} qui transforme le flux MIDI entrant en appliquant à toutes les notes la transformation affine dont les paramètres ont été reçus de \emph{Conductor}.
 \end{enumerate}
-La Figure \ref{Fig:archi} illustre l'architecture globale de LiveScaler.
+La Figure \ref{fig:archi} illustre l'architecture globale de LiveScaler.
 
 On distingue également les paramètres \emph{locaux}, qui sont propres à chaque instrument, et les paramètres \emph{globaux}, qui sont reçus du chef d'orchestre et donc communs à tous les instruments. Dans le cadre des transformations affines, les paramètres $\mu$, $\tau$, $\alpha$  et $b$ sont globaux, il correspondent dans une certaine mesure à l'harmonie actuelle du morceau. Quant à $\delta^-$ et $\delta^+$, ils sont locaux et s'adaptent à la tessiture de l'instrument.
 

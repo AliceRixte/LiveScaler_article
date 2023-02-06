@@ -1,35 +1,39 @@
 \subsubsection{Inversions}
+
 \begin{figure}[htbp]
   \centering
-  \begin{tikzpicture}[baseline= (a).base]    
+  \begin{tikzpicture}[baseline= (a).base]
 
     \node[scale=1] (a) at (0,0){
-    \begin{tikzcd}[column sep=0pt, minimum width=11.5mm, row sep=0.1cm]
-    % https://q.uiver.app/?q=WzAsNTQsWzUsMSwiQ197MH0iXSxbNiwxLCJDXFwjX3swfSJdLFs3LDEsIkRfMCJdLFs4LDEsIkRcXCNfMCJdLFs5LDEsIkVfMCJdLFsxMCwxLCJGXzAiXSxbMTEsMSwiRlxcI18wIl0sWzEyLDEsIkdfMCJdLFsxMywxLCIuLi4iXSxbOCwwXSxbNSwyLCIwIl0sWzYsMiwiMSJdLFs3LDIsIjIiXSxbOCwyLCIzIl0sWzksMiwiNCJdLFsxMCwyLCI1Il0sWzExLDIsIjYiXSxbMTIsMiwiNyJdLFs3LDNdLFs0LDEsIkJfey0xfSJdLFszLDEsIkFcXCNfey0xfSJdLFsyLDEsIkFfey0xfSJdLFsyLDIsIi0zIl0sWzMsMiwiLTIiXSxbNCwyLCItMSJdLFsxLDIsIi4uLiJdLFs5LDQsIjQiXSxbMiw0LCItMyJdLFs3LDQsIjIiXSxbNSw0LCIwIl0sWzEwLDQsIjUiXSxbMTIsNCwiNyJdLFs1LDUsIkNfMCJdLFs0LDQsIi0xIl0sWzMsNCwiLTIiXSxbNiw0LCIxIl0sWzgsNCwiMyJdLFsxMSw0LCI2Il0sWzIsNSwiQV97LTF9Il0sWzMsNSwiQVxcI197LTF9Il0sWzQsNSwiQl97LTF9Il0sWzEsNSwiLi4uIl0sWzEsMSwiLi4uIl0sWzEzLDIsIi4uLiJdLFsxMyw0LCIuLi4iXSxbMTMsNSwiLi4uIl0sWzYsNSwiQ1xcI18wIl0sWzcsNSwiRF8wIl0sWzgsNSwiRFxcI18wIl0sWzksNSwiRV8wIl0sWzEwLDUsIkZfMCJdLFsxMSw1LCJGXFwjXzAiXSxbMTIsNSwiR18wIl0sWzAsM10sWzEwLDI2XSxbMTIsMjgsIiIsMCx7ImNvbG91ciI6WzAsMCw0Nl0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxNCwyOV0sWzI0LDMwLCIiLDIseyJjb2xvdXIiOlswLDAsNDZdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMjIsMzFdLFsxNSwzMywiIiwyLHsiY29sb3VyIjpbMCwwLDQ2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzE3LDI3XV0=
-      \dots & A_{-2} & A\sharp_{-2} & B_{-2} & C_{-1} & C\sharp_{-1} & D_{-1} & D\sharp_{-1} & E_{-1} & F_{-1} & F\sharp_{-1} & G_{-1} & \dots \\
-      \dots & {-3} & {-2} & {-1} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & \dots \\
-      {} &&&&&&&&&&& {} \\
-      {} &&&&&&&&&&& {} \\
-      {} &&&&&&&&&&& {} \\
-      {} &&&&&&&&&&& {} \\
-      {} &&&&&&&&&&& {} \\
-      {} &&&&&&&&&&& {} \\
-      \dots & -3 & -2 & -1 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & \dots \\
-      \dots & A_{-2} & A\sharp_{-2} & B_{-2} & C_{-1} & C\sharp_{-1} & D_{-1} & D\sharp_{-1} & E_{-1} & F_{-1} & F\sharp_{-1} & G_{-1} & \dots 
-      \arrow[from=2-5, to=9-9]
-      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-7, to=9-7]
-      \arrow[from=2-9, to=9-5]
-      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-4, to=9-10]
-      \arrow[from=2-2, to=9-12]
-      \arrow[color={rgb,255:red,117;green,117;blue,117}, dashed, from=2-10, to=9-4]
-      \arrow[from=2-12, to=9-2]
-    \end{tikzcd}
+      \begin{tikzcd}[column sep=0mm, minimum width = 0mm, minimum height=7mm, row sep=0cm]
+        \svdots   & \svdots & \hspace{20mm} & \svdots & \svdots \\
+        \writechord{G}_{-1}  & 7  & & 7  & \writechord{G}_{-1}  \\
+        \writechord{F#}_{-1} & 6  & & 6  & \writechord{F#}_{-1} \\
+        \writechord{F}_{-1}  & 5  & & 5  & \writechord{F}_{-1}  \\
+        \writechord{E}_{-1}  & 4  & & 4  & \writechord{E}_{-1}  \\
+        \writechord{D#}_{-1} & 3  & & 3  & \writechord{D#}_{-1} \\
+        \writechord{D}_{-1}  & 2  & & 2  & \writechord{D}_{-1}  \\
+        \writechord{C#}_{-1} & 1  & & 1  & \writechord{C#}_{-1} \\
+        \writechord{C}_{-1}  & 0  & & 0  & \writechord{C}_{-1}  \\
+        \writechord{B}_{-2}  & -1 & & -1 & \writechord{B}_{-2}  \\
+        \writechord{A#}_{-2} & -2 & & -2 & \writechord{A#}_{-2} \\
+        \writechord{A}_{-2}  & -3 & & -3 & \writechord{A}_{-2}  \\
+        \svdots         & \svdots & & \svdots &         \svdots 
+        \arrow[from=2-2, to=12-4]
+        \arrow[from=4-2, to=10-4, color={rgb,255:red,117;green,117;blue,117}, dashed]
+        \arrow[from=5-2, to=9-4]
+        \arrow[from=7-2, to=7-4, color={rgb,255:red,117;green,117;blue,117}, dashed]
+        \arrow[from=9-2, to=5-4]
+        \arrow[from=10-2, to=4-4, color={rgb,255:red,117;green,117;blue,117}, dashed]
+        \arrow[from=12-2, to=2-4]
+      \end{tikzcd}
     };
-  \end{tikzpicture}   
-  \caption{La transformation $A\langle -1,4\rangle :n\mapsto -n + 4$ correspond au passage à la relative mineure de \writechord{Cma} à \writechord{Ami}\label{fig:inversion}}
+  \end{tikzpicture}
+  \caption{La transformation $A\langle -1,4\rangle :n\mapsto -n + 4$ correspond au passage à la relative mineure de \writechord{Cma} à \writechord{Ami}}
   \medskip
   \small
   Pour des raisons de lisibilité seules les flèches de la gamme de Do majeur ont été tracées. On notera la passage de l'accord \writechord{Cma} à \writechord{Ami} et de \writechord{Ami} à \writechord{Cma}.
+  \label{fig:inversion}
 \end{figure}
 
 Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n + \tau$ permettent de passer d'une gamme majeure à une gamme mineure naturelle et réciproquement. La Figure \ref{fig:inversion} illustre la manière dont le transformation $A\langle -1,4 \rangle$ envoie l'accord de Do majeur $C_0,E_0,G_0$ sur l'accord de La mineur $A_{-1},C_0,E_0$ mais aussi envoie l'accord de la mineur $A_{-1},C_0,E_0$ sur l'accord de Do majeur  $C_0,E_0,G_0$. Comme les transformations affines préservent les classes de hauteur, on peut affirmer plus généralement que $A \langle -1,4\rangle$ envoie Do majeur sur La mineur et La mineur sur Do majeur. Le tableau \ref{tab:triadesA-14} explicite l'image des accords de la gamme de Do majeur par $A\langle -1,4 \rangle$.
