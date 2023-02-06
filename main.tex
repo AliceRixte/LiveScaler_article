@@ -4,14 +4,6 @@
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
 
-
-%\documentclass[french,12pt]{article}
-%\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc}
-%\usepackage{babel}
-%\usepackage{eurosym}
-%\usepackage[affil-it]{authblk}
-
 \usepackage[table]{xcolor}
 
 \usepackage{tikz}
@@ -19,15 +11,9 @@
 \usetikzlibrary{cd}
 \usetikzlibrary{shapes.geometric,fit}
 \usetikzlibrary{positioning}
+\tikzcdset{every label/.append style = {font = \tiny}}
 
 \usepackage{leadsheets}
-
-%\usepackage[top=4cm, bottom=4cm, left=3cm, right=3cm]{geometry}
-%\usepackage[fencedCode,inlineFootnotes,citations,definitionLists,hashEnumerators,smartEllipses,hybrid,pipeTables, tableCaptions]{markdown}
-%\usepackage{keyval}
-
-\usepackage[backend=biber,style=alphabetic,citestyle=authoryear-comp]{biblatex}
-\addbibresource{refs.bib}
 
 \usepackage{minted}
 \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
@@ -38,10 +24,8 @@
 \usepackage{amsthm}
 \usepackage{amssymb}
 
-
-
 \usepackage{graphicx}
-\graphicspath{{img/}}
+\graphicspath{{Figures/}}
 \usepackage{wrapfig}
 \usepackage{float}
 
@@ -51,9 +35,9 @@
 \usepackage{setspace}
 \onehalfspacing
 
-\usepackage{caption}
+%\usepackage{caption}
 \usepackage{subcaption}
-\tikzcdset{every label/.append style = {font = \tiny}}
+
 
 \usepackage{csquotes}
 \usepackage{comment}
@@ -111,8 +95,24 @@
 
 %\tableofcontents
 \begin{abstract}
-  Le résumé doit être placé en haut de la colonne gauche et doit contenir entre 150 et 200 mots.
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget 
 \end{abstract}
+
+\begin{comment}
+  a comme image à la place d'envoie
+cohérence dans la notation des notes 
+repliement de l'intervalle
+ça marche pas bien quand on sort des modes diatoniques
+mode de messiaen : modes à transposition limitée
+
+Expliquiqué dans Techniques de mon langage musical ou dans son cours de composition, tome 1
+
+expliquer dans l'introduction que ce que je veux faire, c'est du live, et faire de la musique
+
+quelques canons stochastiques
+
+Joe Zawinul Modules SEM ou Oberheim claviers en miroirs
+\end{comment}
 
 \section{Introduction}
 \input{intro}
@@ -179,7 +179,10 @@ Afin de tester la pertinence des transformations proposées, j'ai utilisé LiveS
 Je tenais à remercier ici David Janin et Martin Laliberté, mes encadrants de thèse, pour leur relecture et leurs nombreux conseils. Merci également à Chloé Lavrat, pour avoir pris le temps de me lire et de nos nombreuses discussions sur le sujet, toujours très inspirantes.
 
 \newpage
-\printbibliography
+%\printbibliography
+
+\bibliography{refs} 
+\bibliographystyle{plain}
 
 
 \end{document}

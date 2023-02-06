@@ -4,7 +4,7 @@ Lorsque \emph{Instrument} reçoit la commande d'appliquer une nouvelle transform
 
 \begin{enumerate}
   \item \emph{Stop} : toutes les notes en train d'être jouées sont instantanément arrêtées en envoyant un message Note-off pour chaque note en cours. L'instrument reprendra son jeu, en appliquant la nouvelle transformation, au prochain message MIDI qu'il recevra. Cette option est particulièrement adaptée aux instruments dont la durée des notes est courte. 
-  \item \emph{Legato} : chaque note en cours est stoppée et instantanément remplacée par son image par la nouvelle transformation. Si l'instrument virtuel est paramétré sur \emph{Legato}, alors les changements de gamme déclencheront des legatos. C'est l'option retenue par \textcite{Livingstone_Muhlberger_Brown_Thompson_2010}.
+  \item \emph{Legato} : chaque note en cours est stoppée et instantanément remplacée par son image par la nouvelle transformation. Si l'instrument virtuel est paramétré sur \emph{Legato}, alors les changements de gamme déclencheront des legatos.
   \item \emph{ReTrigger} : agit sur le même principe que \emph{Legato} à la différence  qu'un court délai est introduit entre la fin de la note en cours et la note transformée, forçant une nouvelle attaque, même si l'instrument virtuel est en mode legato.
   \item \emph{Wait} : les notes en cours continuent d'être jouées telles quelles. Si elles ne se sont pas arrêtées avant, elles seront stoppée lorsque la prochaine note sera jouée, à partir de laquelle la nouvelle transformation prendra effet.
 \end{enumerate}
