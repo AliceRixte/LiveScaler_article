@@ -1,31 +1,9 @@
 \subsection{Implémentation avec Max for Live}
-\begin{figure*}[htbp]
-  \centering
-  \begin{subfigure}{0.83\textwidth}
-    \includegraphics{Figures/LS-Conductor-UI.png}
-  \end{subfigure}
-  \begin{subfigure}{0.15\textwidth}
-    \includegraphics{Figures/LS-Instrument-UI.png}
-  \end{subfigure}
-  
-  \caption{Interface graphique de LiveScaler (\emph{Conductor} à gauche  et  \emph{Instrument} à droite) }
-  \label{fig:LiveScalerUI}
-\end{figure*}
 
-\begin{comment}
-  L'architecture décrite précédemment est présentée comme un paradigme général, on présente ici l'implémentation concrète.
-\begin{enumerate}
-  \item Outil populaire dans le domaine de l'EDM
-  \item Facilité d'utilisation et intégration dans un environnement 
-  \item Prototypage aisé dans M4L
-  \item Communication entre les entités d'Ableton Live via messages M4L
-\end{enumerate}
-On pourrait aisément rendre l'usage plus général en codant un couple de VST fonctionnant sur le même principe.
-\end{comment}
+L'objectif principal de l'implémentation proposée était de pouvoir expérimenter le plus rapidement possible sur les transformations en tant que musicienne. Max for Live est une intégration du  langage de progammation graphique Max MSP à Ableton Live. On peut aisément communiquer avec les différences instances du logiciel, ce qui permet dans LiveScaler à \emph{Conductor} de contrôler les \emph{Instruments} avec une faible latence\footnote{En moyenne, LiveScaler introduit une latence inférieure à $1$ ms.}. La station audionumérique Ableton Live étant particulièrement populaire pour composer et produire de la musique dans le milieu de l'EDM, c'est donc naturellement que nous avons choisi Max for Live pour une première implémentation. 
 
-L'objectif principal de l'implémentation proposée était de pouvoir expérimenter le plus rapidement possible sur les transformations en tant que musicienne. J'utilise la station audionumérique Ableton Live pour composer et produire de la techno et de la trance, et c'est donc naturellement que j'ai choisi Max for Live pour une première implémentation. 
+La Figure \ref{fig:LiveScalerUI} montre l'interface graphique de LiveScaler. En plus des transformations affines, l'implémentation actuelle propose d'ajouter manuellement n'importe quelle transformation de gamme dans le domaine des hauteurs MIDI (ici des quantifications des hauteurs vers les modes naturels par exemple).
 
-Max for Live est une intégration du  langage de progammation graphique Max MSP à Ableton Live. On peut aisément communiquer avec les différences instances du logiciel, ce qui permet dans LiveScaler à \emph{Conductor} de contrôler les \emph{Instruments} avec une faible latence.
 
 
 

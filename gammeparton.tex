@@ -1,4 +1,4 @@
-\subsubsection{Transformation vers une gamme par ton}
+\subsubsection{Transformation vers un mode à transposition limitée}
 Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe quelle gamme vers une gamme apparentée à une gamme par tons (voir Figure \ref{fig:gammepartons}). Les transformations affines peuvent donc permettre de sortir du cadre de la musique tonale occidentale.
 
 \begin{figure}[htbp]
@@ -8,17 +8,17 @@ Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe 
     \node[scale=1] (a) at (0,0){
       \begin{tikzcd}[column sep=0mm, minimum width = 0mm, minimum height=7mm, row sep=0cm]
         \svdots   & \svdots & \hspace{20mm} & \svdots & \svdots \\
-        \writechord{G}_{-1}  & 7  & & 7  & \writechord{G}_{-1}  \\
-        \writechord{F#}_{-1} & 6  & & 6  & \writechord{F#}_{-1} \\
-        \writechord{F}_{-1}  & 5  & & 5  & \writechord{F}_{-1}  \\
-        \writechord{E}_{-1}  & 4  & & 4  & \writechord{E}_{-1}  \\
-        \writechord{D#}_{-1} & 3  & & 3  & \writechord{D#}_{-1} \\
-        \writechord{D}_{-1}  & 2  & & 2  & \writechord{D}_{-1}  \\
-        \writechord{C#}_{-1} & 1  & & 1  & \writechord{C#}_{-1} \\
-        \writechord{C}_{-1}  & 0  & & 0  & \writechord{C}_{-1}  \\
-        \writechord{B}_{-2}  & -1 & & -1 & \writechord{B}_{-2}  \\
-        \writechord{A#}_{-2} & -2 & & -2 & \writechord{A#}_{-2} \\
-        \writechord{A}_{-2}  & -3 & & -3 & \writechord{A}_{-2}  \\
+        \writechord{G}_{5}  & 7  & & 7  & \writechord{G}_{5}  \\
+        \writechord{F#}_{5} & 6  & & 6  & \writechord{F#}_{5} \\
+        \writechord{F}_{5}  & 5  & & 5  & \writechord{F}_{5}  \\
+        \writechord{E}_{5}  & 4  & & 4  & \writechord{E}_{5}  \\
+        \writechord{D#}_{5} & 3  & & 3  & \writechord{D#}_{5} \\
+        \writechord{D}_{5}  & 2  & & 2  & \writechord{D}_{5}  \\
+        \writechord{C#}_{5} & 1  & & 1  & \writechord{C#}_{5} \\
+        \writechord{C}_{5}  & 0  & & 0  & \writechord{C}_{5}  \\
+        \writechord{B}_{4}  & -1 & & -1 & \writechord{B}_{4}  \\
+        \writechord{A#}_{4} & -2 & & -2 & \writechord{A#}_{4} \\
+        \writechord{A}_{4}  & -3 & & -3 & \writechord{A}_{4}  \\
         \svdots         & \svdots & & \svdots &         \svdots 
         \arrow[from=5-2, to=1-4, color={rgb,255:red,117;green,117;blue,117}, dotted]
         \arrow[from=6-2, to=3-4]
@@ -40,7 +40,7 @@ Contrairement aux inversions et aux transpositions, cette transformation n'est p
 
 \begin{table}[htbp]
   \centering
-  \begin{subtable}{0.45\textwidth}
+  \begin{subtable}{0.45\columnwidth}
     \centering % instead of \begin{center}
       \begin{tabular}{ccc}
           \writechord{C} & $\mapsto$ & \writechord{C}\\
@@ -52,7 +52,7 @@ Contrairement aux inversions et aux transpositions, cette transformation n'est p
           \writechord{B} & $\mapsto$ & \writechord{A\sharp}
       \end{tabular}
   \end{subtable}
-  \begin{subtable}{0.45\textwidth}
+  \begin{subtable}{0.45\columnwidth}
       \centering % instead of \begin{center}
       \begin{tabular}{ccc}
           \writechord{C} & $\mapsto$ & \writechord{C}\\
@@ -64,5 +64,29 @@ Contrairement aux inversions et aux transpositions, cette transformation n'est p
           \writechord{B\flat} & $\mapsto$ & \writechord{G\sharp}
       \end{tabular}
     \end{subtable}
-    \caption{Image des gammes de Do majeur (à gauche) et Do mineur (à droite) par $A\langle 2, 0 \rangle$\label{tab:minparton}}
+    \caption{Image des gammes de C majeur (à gauche) et C mineur naturel(à droite) par $A\langle 2, 0 \rangle$\label{tab:minparton}}
+\end{table}
+
+De manière plus générale, lorsque le coefficient modal $\mu$ n'est pas premier avec $\beta$, on obtient un mode à transposition limitée dont les notes sont séparées par un intervalle de $\mu$ demi-tons\footnote{On montre en effet que le nombre de classes de hauteur dans l'image de $A\langle \mu, \tau\rangle$ est égal à $\frac{12}{\mu\wedge 12}$ où $\wedge$ dénote le pgcd de deux entiers.}. Ainsi, pour $\mu = 4$, on obtient un mode composé de $4$ classes d'hauteurs, séparées par des tierces mineures.
+
+
+La Table \ref{tab:classmu} résume les différents types de transformations qu'offrent les transformations affines, ainsi que le nombre de classes de hauteur dans l'image de ces transformations. Les transformations affines bijectives - leur image contient $12$ classes de hauteurs - correspondent  aux automorphismes $F\langle u,j \rangle$ du groupe $T/I$ décrits par \cite{lewin1990klumpenhouwer}.
+
+
+\begin{table}[htbp]
+  \centering
+  \rowcolors{2}{gray!25}{white}
+  \begin{tabular}{ccc}
+    \rowcolor{gray!50}
+    $\mu$ & Type de transformation & Classes de hauteur\\
+    -1 & Inversions majeur/mineur & 12\\
+    0 & Octaves & 1\\
+    1 & Transpositions & 12 \\
+    -2,2 & Gamme par tons & 6 \\
+    -3,3 & Tierces mineures &4 \\
+    -4,4 & Tierces majeures & 3\\
+    -5,5 & $F\langle 5,\tau \rangle$, $F\langle 7,\tau \rangle$& 12 \\
+    -6,6 & Tritons & 2\\
+  \end{tabular}
+  \caption{Classification des transformations affines en fonction de leur coefficient modal $\mu$\label{tab:classmu} } 
 \end{table}

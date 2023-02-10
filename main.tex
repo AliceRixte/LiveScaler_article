@@ -52,6 +52,10 @@
 
 \usepackage{relsize}
 
+\usepackage{hyperref}
+
+\usepackage{float}
+
 
 
 \newcommand{\LSHist}{\texttt{Hist} }
@@ -125,33 +129,16 @@ Joe Zawinul Modules SEM ou Oberheim claviers en miroirs
 \section{Introduction}
 \input{intro}
 \section{Transformations de l'espace des hauteurs}
-\begin{comment}
-  \subsection{Quelles transformations de gamme autoriser ?}
-Les transformation affines de la forme $an + b$ où $n$ est la note de départ.
-\subsection{Pourquoi ces transformations ?}
-\begin{enumerate}
-  \item Ces transformations sont adaptées à la musique tonale occidentale : passage du majeur au mineur.
-  \item Elles sont facilement implémentables
-  \item Elles peuvent être exprimées par une paire d'entiers, ce qui permet de les communiquer directement via MIDI.
-\end{enumerate}
-
-
-\subsection{Peut-on quand même sortir de la tonalité ?}
-Oui : \begin{enumerate}
-  \item on peut passer d'une gamme quelconque à une gamme par tons
-  \item elles s'appliquent dans un contexte microtonal
-  \item Possibilité d'ajouter une permutation quelconque personnalisée
-\end{enumerate} 
-\end{comment}
 Dans cette section nous présentons l'ensemble des transformations de l'espace des hauteurs que nous utilisons dans LiveScaler. Commençons tout d'abord par définir mathématiquement l'espace des hauteurs de note que nous souhaitons manipuler.
 
 \subsection{Espace des hauteurs}
-Nous utilisons ici un espace des hauteurs linéaire. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}. On obtient alors une hauteur $p$ à partir de la fréquence $f>0$ par
+Nous utilisons ici un espace des hauteurs linéaire. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}.  À partir d'une fréquence $f>0$, on détermine une hauteur $p$ à par
 $$p = \log_2(f/\alpha)$$
 
 On obtient alors la droite réelle : $p\in \mathbb{R}$. En discrétisant cette droite, on peut obtenir une note $n$ à partir de la hauteur $p$ par 
 $$n = \lfloor \beta p \rfloor$$
-On obtient alors le tempérament à division multiple $\beta$-TET \footnote{TET signifie Tone Equal Temperament en anglais}. En particulier, lorsque $\beta = 12$ et $\alpha = 8.1758$ Hz \footnote{ $8.1758$ à $0$ est la fréquence (ici arrondie) correpondant à la note \writechord{C}$_{-1}$ et la note MIDI $0$.}, on obtient les hauteurs MIDI.
+
+De cette manière, on obtient le tempérament à division multiple $\beta$-TET \footnote{TET signifie Tone Equal Temperament en anglais}. En particulier, lorsque $\beta = 12$ et $\alpha = 8.1758$ Hz \footnote{ $8.1758$ à $0$ est la fréquence (ici arrondie) correpondant à la note \writechord{C}$_{-1}$ et la note MIDI $0$.}, on retrouve le codage des hauteurs MIDI.
 
 Ainsi, pour définir un tempérament multiple, nous avons besoins de deux paramètres : l'\emph{ancre} $\alpha$  et le nombre de divisions de l'octave $\beta$, que nous appelons \emph{base}. On définit ainsi \begin{align*}
   T\langle \alpha, \beta \rangle &: \mathbb{R}_+^* \rightarrow \mathbb{Z}\\
@@ -173,7 +160,8 @@ Nous définissons alors une \emph{transformation de gamme} comme une fonction qu
 \input{restrictionintervalle.tex}
 
 \section{Implémentation des transformations affines : LiveScaler}
-Nous allons à présent nous intéresser à l'implémentation des transformations affines présentées au début de cet article pour piloter en live l'harmonie d'un morceau de musique électronique. 
+
+Nous allons à présent nous intéresser à l'implémentation des transformations affines que nous venons de présenter afin de pouvoir les appliquer en live à l'ensemble des flux MIDI qui composent le morceau joué.
 
 \input{architecture}
 \input{timing}
@@ -184,12 +172,10 @@ Nous allons à présent nous intéresser à l'implémentation des transformation
 
 
 \section{Escape : une performance avec LiveScaler }
-Afin de tester la pertinence des transformations proposées, j'ai utilisé LiveScaler pour créer \emph{Escape}, une performance live de trance psychédélique. J'ai notamment pu proposer cette performance en publique pour la soutenance de mon mémoire de master en Septembre 2019. Dans cette section, j'expliquerai la manière dont j'ai procédé pour cette mise en pratique et je donnerai mes impressions subjectives en tant qu'utilisatrice de LiveScaler.
+Afin de tester la pertinence des transformations proposées, j'ai utilisé LiveScaler pour créer \emph{Escape}, une performance live de trance psychédélique. J'ai notamment pu proposer cette performance en publique pour la soutenance de mon mémoire de master en Septembre 2019. Dans cette section, j'expliquerai la manière dont j'ai procédé pour cette mise en pratique et je donnerai mes impressions subjectives en tant que musicienne et utilisatrice de LiveScaler.
 \input{controleurs}
 \input{mapping}
 \input{composition}
-\input{retourexp}
-
 \section{Travaux connexes}
 
 \input{travauxconnexes}
