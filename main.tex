@@ -44,9 +44,13 @@
 
 
 \usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{Z}{>{\raggedright\arraybackslash}X}
 \definecolor{tableShade}{gray}{0.9}
 
 \usepackage[shortlabels]{enumitem}
+
+\usepackage{relsize}
 
 
 
@@ -85,6 +89,8 @@
 }
 
 
+
+
 \title{LiveScaler : Contrôler en live l'harmonie d'un morceau de musique électronique}
 \oneauthor
  {Alice Rixte} {Université de Bordeaux \\ alice.rixte@u-bordeaux.fr }
@@ -95,7 +101,9 @@
 
 %\tableofcontents
 \begin{abstract}
-  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget 
+Dans le contexte de l'Electronic Dance Music, la plupart des artistes utilisent des techniques de \emph{DJing} pour performer leurs propres productions sur scène, se privant ainsi de l'accès à la structure interne de leurs morceaux, et en particulier de l'équivalent de leur partition : les fichiers MIDI joués par des instruments virtuels.
+
+Cet article présente LiveScaler, un logiciel permettant de contrôler en live l'harmonie et la hauteur des notes de l'ensemble des instruments virtuels d'un morceau de musique électronique. LiveScaler introduit un ensemble restreint de transformations de l'espace des hauteurs de notes, les transformations affines. Ces transformations sont appliquées à l'ensemble des flux MIDI d'un morceau composé préalablement. Une implémentation utilisant Max MSP en combinaison avec Ableton Live (Max for Live) est proposée. Une attention particulière est portée aux questions de contrôle, de \emph{mapping} et de mise en pratique dans le cadre de l'Electronic Dance Music (EDM).
 \end{abstract}
 
 \begin{comment}
@@ -116,7 +124,7 @@ Joe Zawinul Modules SEM ou Oberheim claviers en miroirs
 
 \section{Introduction}
 \input{intro}
-\section{Transformations de gammes}
+\section{Transformations de l'espace des hauteurs}
 \begin{comment}
   \subsection{Quelles transformations de gamme autoriser ?}
 Les transformation affines de la forme $an + b$ où $n$ est la note de départ.
@@ -135,11 +143,25 @@ Oui : \begin{enumerate}
   \item Possibilité d'ajouter une permutation quelconque personnalisée
 \end{enumerate} 
 \end{comment}
-Dans cet article, on se place dans le contexte des tempéraments à division multiple. On notera $b$ le nombre de divisions de l'octave. Bien que l'ensemble des exemples proposés ici se focalisent sur le tempérament égal $b = 12$, le lecteur se persuadera aisément que tout ce qui est proposé ici peut se généraliser à tous les tempéraments à division multiple. On peut alors associer à toute note un entier $n\in \mathbb{Z}$. En particulier, nous utiliserons ici la norme MIDI en l'étendant à l'ensembles des entiers relatifs : $B_{-2}$ correspond ainsi à $-1$, $C_{-1}$ à $0$, $C\sharp_{-1}$  à $1$, $A_3$ à $57$ \dots
+Dans cette section nous présentons l'ensemble des transformations de l'espace des hauteurs que nous utilisons dans LiveScaler. Commençons tout d'abord par définir mathématiquement l'espace des hauteurs de note que nous souhaitons manipuler.
 
-Nous définissons ici une \emph{transformation de gamme} comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction $\mathbb{Z}$ dans $\mathbb{Z}$.
+\subsection{Espace des hauteurs}
+Nous utilisons ici un espace des hauteurs linéaire. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}. On obtient alors une hauteur $p$ à partir de la fréquence $f>0$ par
+$$p = \log_2(f/\alpha)$$
 
-Un bon exemple de transformation de gamme est la transposition : à chaque note $n$ on associe la note $n+\tau$  décalée de $\tau$ demi-tons vers l'aigu lorsque $\tau$ est positif et vers le grave lorsque $\tau$ est négatif. Ainsi, une transposition de $\tau$ demi-tons est représentée par la transformation de gamme $ n \mapsto n+\tau$ (voir Figure \ref{fig:transp}).
+On obtient alors la droite réelle : $p\in \mathbb{R}$. En discrétisant cette droite, on peut obtenir une note $n$ à partir de la hauteur $p$ par 
+$$n = \lfloor \beta p \rfloor$$
+On obtient alors le tempérament à division multiple $\beta$-TET \footnote{TET signifie Tone Equal Temperament en anglais}. En particulier, lorsque $\beta = 12$ et $\alpha = 8.1758$ Hz \footnote{ $8.1758$ à $0$ est la fréquence (ici arrondie) correpondant à la note \writechord{C}$_{-1}$ et la note MIDI $0$.}, on obtient les hauteurs MIDI.
+
+Ainsi, pour définir un tempérament multiple, nous avons besoins de deux paramètres : l'\emph{ancre} $\alpha$  et le nombre de divisions de l'octave $\beta$, que nous appelons \emph{base}. On définit ainsi \begin{align*}
+  T\langle \alpha, \beta \rangle &: \mathbb{R}_+^* \rightarrow \mathbb{Z}\\
+  &:f \mapsto \lfloor \beta \log_2(f/\alpha)\rfloor
+\end{align*}
+
+
+Dans cet article, nous nous intéresserons à l'\emph{espace des hauteurs linéaires} discrétisé $\mathbb{Z} = T\langle\alpha, \beta \rangle (\mathbb{R^*_+})$. Par abus de langage, on appellera ici la fonction $T\langle \alpha, \beta \rangle$ le \emph{tempérament égal} d'ancre $\alpha$ et de base $\beta$. En pratique, $\alpha$ correspondra toujours à une note MIDI, et on se permettra d'écrire $\alpha = \writechord{C}_5$ pour indiquer que la fréquence correspondant à la note $C_5$ est associée à $0$ dans $\mathbb{Z}$.
+
+Nous définissons alors une \emph{transformation de gamme} comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction $\mathbb{Z}$ dans $\mathbb{Z}$. Cette transformation est \emph{a priori} indépendante de la manière dont $\mathbb{Z}$ est relié à l'espace des fréquences.
 
 
 \input{affines.tex}

@@ -25,7 +25,6 @@
 *.run.xml
 *.synctex.gz
 *.toc
-*.pdf
 build
 TEMPLATE_JIM_2023/
 figure.eps
