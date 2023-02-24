@@ -30,7 +30,7 @@ Lorsque $\mu = 2$ ou $\mu = -2$, les transformations affines envoient n'importe 
     \end{tikzcd}
     };
   \end{tikzpicture}   
-  \caption{La transformation $A\langle 2,0\rangle :n\mapsto 2n$ permet d'obtenir des gammes apparentées à la gamme par tons.\label{fig:gammepartons}}
+  \caption{La transformation $A\langle 2,0\rangle :n\mapsto 2n$ permet d'obtenir des gammes apparentées à une gamme par tons.\label{fig:gammepartons}}
 \end{figure}
 
 Contrairement aux inversions et aux transpositions, cette transformation n'est pas bijective : l'image de $A\langle 2,0 \rangle$ contient exactement $6$ classes de hauteurs qui correspondent aux $6$ notes d'une des deux gammes par tons. Il est intéressant de noter que l'image d'une gamme majeure ou mineure naturelle par $A\langle 2,\tau\rangle$ contient les $6$ notes de la gamme par tons (voir Table \ref{tab:minparton}). Ce n'est pas le cas pour la gamme mineure harmonique dont l'image par $A\langle 2,\tau\rangle$ ne contient que $5$ classes de hauteur.
@@ -40,7 +40,7 @@ Contrairement aux inversions et aux transpositions, cette transformation n'est p
 
 \begin{table}[htbp]
   \centering
-  \begin{subtable}{0.45\textwidth}
+  \begin{subtable}[t]{0.24\textwidth}
     \centering % instead of \begin{center}
       \begin{tabular}{ccc}
           \writechord{C} & $\mapsto$ & \writechord{C}\\
@@ -51,8 +51,8 @@ Contrairement aux inversions et aux transpositions, cette transformation n'est p
           \writechord{A} & $\mapsto$ & \writechord{F\sharp}\\
           \writechord{B} & $\mapsto$ & \writechord{A\sharp}
       \end{tabular}
-  \end{subtable}
-  \begin{subtable}{0.45\textwidth}
+  \end{subtable}%
+  \begin{subtable}[t]{0.24\textwidth}
       \centering % instead of \begin{center}
       \begin{tabular}{ccc}
           \writechord{C} & $\mapsto$ & \writechord{C}\\
@@ -64,5 +64,5 @@ Contrairement aux inversions et aux transpositions, cette transformation n'est p
           \writechord{B\flat} & $\mapsto$ & \writechord{G\sharp}
       \end{tabular}
     \end{subtable}
-    \caption{Image des gammes de Do majeur (à gauche) et Do mineur (à droite) par $A\langle 2, 0 \rangle$\label{tab:minparton}}
+    \caption{Image des gammes de Do majeur (à gauche) et Do mineur naturel (à droite) par $A\langle 2, 0 \rangle$\label{tab:minparton}}
 \end{table}
