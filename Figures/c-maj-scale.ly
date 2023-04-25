@@ -19,8 +19,8 @@ global = {
   \override Staff.TimeSignature #'stencil = ##f  
 }
 
-\new Staff \relative c'' {\global   
-    c1 d e f g a b 
+\new Staff \relative c' {\global   
+    c4 <e g>2
   }
 
 

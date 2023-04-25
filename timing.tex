@@ -1,5 +1,5 @@
 \subsection{Quand appliquer les transformations ? }
-Lorsque \emph{Instrument} reçoit la commande d'appliquer une nouvelle transformation de gamme, elle est sensée prendre effet immédiatement et sera appliquée à toutes les notes reçues jusqu'au prochain changement de gamme. Lorsque l'instrument n'est pas en train de jouer, cela ne pose aucune difficulté : il appliquera la transformation au prochain message MIDI qu'il recevra. Il se peut en revanche que l'instrument soit déjà en train de jouer une note. LiveScaler propose $4$ manières de réagir dans une telle situation. 
+Lorsque \emph{Instrument} reçoit la commande d'appliquer une nouvelle transformation de gamme, celle-ci est sensée prendre effet immédiatement et être appliquée à toutes les notes reçues jusqu'au prochain changement de gamme. Lorsque l'instrument n'est pas en train de jouer, cela ne pose aucune difficulté : il appliquera la nouvelle transformation au prochain message MIDI qu'il recevra. Il se peut en revanche que l'instrument soit déjà en train de jouer une note. LiveScaler propose $4$ manières de réagir dans une telle situation : 
 
 
 \begin{enumerate}

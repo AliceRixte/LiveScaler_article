@@ -40,15 +40,16 @@
   %\centering
   \includegraphics[width=\columnwidth]{c-maj-crop.pdf}
   \begin{tabularx}{\columnwidth}{ YYYYZ }
-    &&$ \mathlarger{\mathlarger{\mathlarger{\mathlarger{\mathlarger{\mathlarger\Downarrow}}}}} $ & $A\langle -1,4 \rangle$&
+    &&$ \mathlarger{\mathlarger{\mathlarger{\mathlarger\Downarrow}}}$ & $A\langle -1,4 \rangle$&
     \end{tabularx}
   \includegraphics[width=\columnwidth]{e-mod-crop.pdf}
   \caption{L'image de la gamme de Do majeur par $A\langle -1,4 \rangle$ est un mode de Mi}
+  \label{fig:modeE}
 \end{figure}
 
-Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n + \tau$ permettent de passer d'une gamme majeure à un mode de Mi et réciproquement. La Figure \ref{fig:inversion} illustre la manière dont la triade \writechord{C}$_5$, \writechord{E}$_5$, \writechord{G}$_5$ est  par $A\langle -1,4 \rangle$ en la triade \writechord{E}$_5$, \writechord{C}$_5$, \writechord{A}$_4$. De même, l'image de la triade \writechord{A}$_4$, \writechord{C}$_5$, \writechord{E}$_5$  est  \writechord{G}$_5$, \writechord{E}$_5$, \writechord{G}$_5$. Comme les transformations affines préservent les classes de hauteur, on peut affirmer plus généralement que $A \langle -1,4\rangle$ transforme l'accord \writechord{Cma} en \writechord{Ami}   et \writechord{Ami} en \writechord{Cma}. 
+Lorsque $\mu = -1$, les transformations $A \langle -1,\tau\rangle : n\mapsto -n + \tau$ permettent de passer d'une gamme majeure à un mode de Mi et réciproquement (voir Figure \ref{fig:modeE}). La Figure \ref{fig:inversion} illustre la manière dont la triade \writechord{C}$_5$, \writechord{E}$_5$, \writechord{G}$_5$ est  par $A\langle -1,4 \rangle$ en la triade \writechord{E}$_5$, \writechord{C}$_5$, \writechord{A}$_4$. De même, l'image de la triade \writechord{A}$_4$, \writechord{C}$_5$, \writechord{E}$_5$  est  \writechord{G}$_5$, \writechord{E}$_5$, \writechord{G}$_5$. Comme les transformations affines préservent les classes de hauteur, on peut affirmer plus généralement que $A \langle -1,4\rangle$ transforme l'accord \writechord{Cma} en \writechord{Ami}   et \writechord{Ami} en \writechord{Cma}. 
 
-Remarquons de plus qu'en changeant l'ancre, par exemple en choisissant $\alpha =$  \writechord{G}$_4$, l'image de l'accord \writechord{Gma} par $A\langle-1,4 \rangle$ sera \writechord{Emi}. La table \ref{tab:triadesA-14} explicite les images des accords de la gamme de Do majeur par $A\langle -1,4 \rangle$ lorsque $\alpha = $ \writechord{C}$_n$ et des accords de la gamme de Sol majeur lorsque l'on change l'ancre pour $\alpha =$ \writechord{G}$_n$, avec $n$ un entier quelconque.
+Remarquons de plus qu'en changeant l'ancre,  en choisissant $\alpha =$  \writechord{G}$_4$ par exemple, l'image de l'accord \writechord{Gma} par $A\langle-1,4 \rangle$ sera \writechord{Emi}. La Table \ref{tab:triadesA-14} explicite les images des accords de la gamme de Do majeur par $A\langle -1,4 \rangle$ lorsque $\alpha = $ \writechord{C}$_n$ et des accords de la gamme de Sol majeur lorsque l'on change l'ancre pour $\alpha =$ \writechord{G}$_n$, avec $n$ un entier quelconque.
 
 
 \begin{table}[htbp]
@@ -69,7 +70,6 @@ Remarquons de plus qu'en changeant l'ancre, par exemple en choisissant $\alpha =
 
 Ainsi, en se basant sur l'image de l'accord majeur dont la tonique correspond à l'ancre, nous pouvons associer les transformations affines pour lesquelle $\mu = 1$ ou $\mu=-1$ au degré de l'image de cet accord dans la gamme. Par exemple, $A\langle -1,4 \rangle$ peut être associée au degré \writechord{vi} car elle associe le sixième degré mineur à  l'accord majeur dont la tonique est l'ancre (\writechord{Ami} pour \writechord{Cma}, \writechord{Emi} pour \writechord{Gma}, \dots). On obtient ainsi une notation plus intuitive que la notation mathématique, dont la table \ref{tab:degrees} donne un aperçu. 
 
-
 \begin{table}[htbp]
   \centering
   \rowcolors{2}{gray!25}{white}
@@ -77,26 +77,14 @@ Ainsi, en se basant sur l'image de l'accord majeur dont la tonique correspond à
     \rowcolor{gray!50}
     Degré & Transformation affine\\
     \writechord{I} & $A\langle ~~1, ~~0\rangle$\\
-    \writechord{ii} &  $A\langle -1, ~~8 \rangle$\\
+    \writechord{ii} &  $A\langle -1, -3 \rangle$\\
     \writechord{iii} &  $A\langle -1, -1 \rangle$\\
     \writechord{IV} &  $A\langle ~~1,~~ 5 \rangle$\\
     \writechord{V} &  $A\langle ~~ 1, ~~7 \rangle$\\
     \writechord{vi}& $A\langle -1, ~~4\rangle$\\
-    \writechord{vii} & $A\langle -1, ~~3 \rangle$\\
+    \writechord{vii} & $A\langle -1, ~~6 \rangle$\\
   \end{tabular}
   \caption{ Correspondances entre triades d'une gamme majeure et transformations de gamme\label{tab:degrees} } 
 \end{table}
 
-
-
-
-
-
-
-De manière générale, les inversions affines se comportent moins bien sur les modes non naturels. Par exemple, $A\langle -1, 4\rangle ($\writechord{G\sharp}$) = $ \writechord{G\sharp} donc l'image de la gamme de La mineur harmonique par $A\langle -1, 4\rangle$ contient les notes \writechord{C}, \writechord{D}, \writechord{E}, \writechord{F}, \writechord{G}, \writechord{G\sharp}, \writechord{B}, ce qui ne correspond pas à un mode standard de la musique tonale. C'est une des faiblesses des transformations affines.
-
-
-
-
-
-
+Remarquons que, de manière générale, les inversions affines se comportent moins bien sur les modes non naturels. Par exemple, $A\langle -1, 4\rangle ($\writechord{G\sharp}$) = $ \writechord{G\sharp} donc l'image de la gamme de La mineur harmonique par $A\langle -1, 4\rangle$ contient les notes \writechord{C}, \writechord{D}, \writechord{E}, \writechord{F}, \writechord{G}, \writechord{G\sharp}, \writechord{B}, ce qui ne correspond pas à un mode standard de la musique tonale. C'est une des faiblesses des transformations affines.

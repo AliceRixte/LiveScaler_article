@@ -56,6 +56,8 @@
 
 \usepackage{float}
 
+%\usepackage{parskip}
+
 
 
 \newcommand{\LSHist}{\texttt{Hist} }
@@ -103,28 +105,14 @@
 
 \maketitle
 
+\sloppy
+
 %\tableofcontents
 \begin{abstract}
-Dans le contexte de l'Electronic Dance Music, la plupart des artistes utilisent des techniques de \emph{DJing} pour performer leurs propres productions sur scène, se privant ainsi de l'accès à la structure interne de leurs morceaux, et en particulier de l'équivalent de leur partition : les fichiers MIDI joués par des instruments virtuels.
+Dans le contexte de l'Electronic Dance Music (EDM), la plupart des artistes utilisent des techniques de \emph{DJing} pour performer leurs propres productions sur scène, se privant ainsi de l'accès à la structure interne de leurs morceaux, et en particulier de l'équivalent de leur partition : les fichiers MIDI joués par des instruments virtuels.
 
-Cet article présente LiveScaler, un logiciel permettant de contrôler en live l'harmonie et la hauteur des notes de l'ensemble des instruments virtuels d'un morceau de musique électronique. LiveScaler introduit un ensemble restreint de transformations de l'espace des hauteurs de notes, les transformations affines. Ces transformations sont appliquées à l'ensemble des flux MIDI d'un morceau composé préalablement. Une implémentation utilisant Max MSP en combinaison avec Ableton Live (Max for Live) est proposée. Une attention particulière est portée aux questions de contrôle, de \emph{mapping} et de mise en pratique dans le cadre de l'Electronic Dance Music (EDM).
+Cet article présente le logiciel LiveScaler, qui permet de contrôler en live l'harmonie et la hauteur des notes de l'ensemble des instruments virtuels d'un morceau de musique électronique. Un ensemble restreint de transformations de l'espace des hauteurs de notes, les \emph{transformations affines}, est introduit. Ces transformations sont appliquées à l'ensemble des flux MIDI d'un morceau composé préalablement. Une implémentation utilisant Max MSP en combinaison avec Ableton Live (Max for Live) est proposée. Une attention particulière est portée aux questions de contrôle, de \emph{mapping} et de mise en pratique dans le cadre de l'EDM.
 \end{abstract}
-
-\begin{comment}
-  a comme image à la place d'envoie
-cohérence dans la notation des notes 
-repliement de l'intervalle
-ça marche pas bien quand on sort des modes diatoniques
-mode de messiaen : modes à transposition limitée
-
-Expliquiqué dans Techniques de mon langage musical ou dans son cours de composition, tome 1
-
-expliquer dans l'introduction que ce que je veux faire, c'est du live, et faire de la musique
-
-quelques canons stochastiques
-
-Joe Zawinul Modules SEM ou Oberheim claviers en miroirs
-\end{comment}
 
 \section{Introduction}
 \input{intro}
@@ -132,15 +120,15 @@ Joe Zawinul Modules SEM ou Oberheim claviers en miroirs
 Dans cette section nous présentons l'ensemble des transformations de l'espace des hauteurs que nous utilisons dans LiveScaler. Commençons tout d'abord par définir mathématiquement l'espace des hauteurs de note que nous souhaitons manipuler.
 
 \subsection{Espace des hauteurs}
-Nous utilisons ici un espace des hauteurs linéaire. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}.  À partir d'une fréquence $f>0$, on détermine une hauteur $p$ à par
+Nous utilisons ici un espace des hauteurs linéaire. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}.  À partir d'une fréquence $f>0$, on détermine une hauteur $p$ par
+
 $$p = \log_2(f/\alpha)$$
 
 On obtient alors la droite réelle : $p\in \mathbb{R}$. En discrétisant cette droite, on peut obtenir une note $n$ à partir de la hauteur $p$ par 
 $$n = \lfloor \beta p \rfloor$$
+\noindent avec $\beta\in \mathbb{N}^*$ le nombre de divisions de l'octave. On obtient ainsi le tempérament à division multiple $\beta$-TET \footnote{TET signifie Tone Equal Temperament en anglais}. En particulier, lorsque $\beta = 12$ et $\alpha = 8.1758$ Hz \footnote{ $8.1758$ à $0$ est la fréquence (ici arrondie) correpondant à la note \writechord{C}$_{-1}$ et la note MIDI $0$.}, on retrouve le codage des hauteurs MIDI.
 
-De cette manière, on obtient le tempérament à division multiple $\beta$-TET \footnote{TET signifie Tone Equal Temperament en anglais}. En particulier, lorsque $\beta = 12$ et $\alpha = 8.1758$ Hz \footnote{ $8.1758$ à $0$ est la fréquence (ici arrondie) correpondant à la note \writechord{C}$_{-1}$ et la note MIDI $0$.}, on retrouve le codage des hauteurs MIDI.
-
-Ainsi, pour définir un tempérament multiple, nous avons besoins de deux paramètres : l'\emph{ancre} $\alpha$  et le nombre de divisions de l'octave $\beta$, que nous appelons \emph{base}. On définit ainsi \begin{align*}
+Ainsi, pour définir un tempérament multiple, nous avons besoins de deux paramètres : l'\emph{ancre} $\alpha$  et le nombre de divisions de l'octave $\beta$, que nous appelons \emph{base}. On définit alors \begin{align*}
   T\langle \alpha, \beta \rangle &: \mathbb{R}_+^* \rightarrow \mathbb{Z}\\
   &:f \mapsto \lfloor \beta \log_2(f/\alpha)\rfloor
 \end{align*}
@@ -148,14 +136,13 @@ Ainsi, pour définir un tempérament multiple, nous avons besoins de deux param�
 
 Dans cet article, nous nous intéresserons à l'\emph{espace des hauteurs linéaires} discrétisé $\mathbb{Z} = T\langle\alpha, \beta \rangle (\mathbb{R^*_+})$. Par abus de langage, on appellera ici la fonction $T\langle \alpha, \beta \rangle$ le \emph{tempérament égal} d'ancre $\alpha$ et de base $\beta$. En pratique, $\alpha$ correspondra toujours à une note MIDI, et on se permettra d'écrire $\alpha =$ \writechord{C}$_5$ pour indiquer que la fréquence correspondant à la note \writechord{C}$_5$ est associée à $0$ dans $\mathbb{Z}$.
 
-Nous définissons alors une \emph{transformation de gamme} comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction $\mathbb{Z}$ dans $\mathbb{Z}$. Cette transformation est \emph{a priori} indépendante de la manière dont $\mathbb{Z}$ est relié à l'espace des fréquences.
+Nous définissons alors une \emph{transformation de gamme} comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction de $\mathbb{Z}$ dans $\mathbb{Z}$. Cette transformation est \emph{a priori} indépendante de la manière dont $\mathbb{Z}$ est relié à l'espace des fréquences.
 
 
 \input{affines.tex}
 \input{transpositions.tex}
 \input{inversions.tex}
 \input{gammeparton.tex}
-\input{coeffmodal.tex}
 \input{ancres.tex}
 \input{restrictionintervalle.tex}
 
@@ -185,7 +172,7 @@ Afin de tester la pertinence des transformations proposées, j'ai utilisé LiveS
 \input{conclusion}
 
 \subsection{Remerciements}
-Je tenais à remercier ici David Janin et Martin Laliberté, mes encadrants de thèse, pour leur relecture et leurs nombreux conseils. Merci également à Chloé Lavrat, pour avoir pris le temps de me lire et de nos nombreuses discussions sur le sujet, toujours très inspirantes.
+Je tenais à remercier ici David Janin et Martin Laliberté, mes encadrants de thèse, pour leur relecture et leurs nombreux conseils. Merci également à Chloé Lavrat, pour avoir pris le temps de me lire et pour nos nombreuses discussions sur le sujet, toujours très inspirantes.
 
 \newpage
 %\printbibliography
