@@ -6,6 +6,7 @@
 
 \usepackage[table]{xcolor}
 
+
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.markings}
 \usetikzlibrary{cd}
@@ -117,10 +118,10 @@ Cet article présente le logiciel LiveScaler, qui permet de contrôler en live l
 \section{Introduction}
 \input{intro}
 \section{Transformations de l'espace des hauteurs}
-Dans cette section nous présentons l'ensemble des transformations de l'espace des hauteurs que nous utilisons dans LiveScaler. Commençons tout d'abord par définir mathématiquement l'espace des hauteurs de note que nous souhaitons manipuler.
+Dans cette section nous présentons les transformations de l'espace des hauteurs que nous utilisons dans LiveScaler. L'idée principale est d'associer à chaque note une nouvelle note, qui sera jouée en lieu et place de la note initiale par l'ensemble des instruments du morceau de musique joué. Nous commencerons par définir l'espace des hauteurs de note sur lequel agissent nos transformations. Puis, nous définissons les transformation périodiques modulo un intervalle. Nous nous concentrerons ensuite sur les propriétés musicales des transformations affines. Enfin, nous terminerons en restreignant l'écart de hauteur entre la note initial et la note transformée, afin d'éviter de s'éloigner trop de la tessiture de l'instrument.
 
 \subsection{Espace des hauteurs}
-Nous utilisons ici un espace des hauteurs linéaire. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}.  À partir d'une fréquence $f>0$, on détermine une hauteur $p$ par
+Commençons tout d'abord par définir mathématiquement l'espace des hauteurs de note que nous souhaitons manipuler. Nous utilisons ici l'espace des hauteurs linéaire. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}.  À partir d'une fréquence $f>0$, on détermine une hauteur $p$ par
 
 $$p = \log_2(f/\alpha)$$
 
@@ -138,7 +139,7 @@ Dans cet article, nous nous intéresserons à l'\emph{espace des hauteurs linéa
 
 Nous définissons alors une \emph{transformation de gamme} comme une fonction qui à toute hauteur de note associe une nouvelle hauteur de note a priori quelconque, autrement dit une fonction de $\mathbb{Z}$ dans $\mathbb{Z}$. Cette transformation est \emph{a priori} indépendante de la manière dont $\mathbb{Z}$ est relié à l'espace des fréquences.
 
-
+\input{periodique.tex}
 \input{affines.tex}
 \input{transpositions.tex}
 \input{inversions.tex}
@@ -177,8 +178,102 @@ Je tenais à remercier ici David Janin et Martin Laliberté, mes encadrants de t
 \newpage
 %\printbibliography
 
-\bibliography{refs} 
-\bibliographystyle{plain}
+%\bibliography{refs} 
+%\bibliographystyle{plain}
+
+\begin{thebibliography}{2}
+  \bibitem{agostini2020programmer}Agostini, A., Ghisi, D., Giavitto, J. ''Programmer en Max avec bell'', 
+  {\em Journées D'informatique Musicale (JIM)}, 2020.
+
+  \bibitem{agostini2021programming} Agostini, A., Ghisi, D., Giavitto, J. ''Programming in style with bach'',
+   {\em Perception, Representations, Image, Sound, Music}, pp. 257-278, 2021.
+
+  \bibitem{andreatta2003formalisation}Andreatta, M., Agon, C. ''Formalisation algébrique des structures musicales à l'aide de la Set-Theory: aspects théoriques et analytiques'',
+  {\em Journées D'Informatique Musicale}, 2003.
+
+  \bibitem{andreatta2003implementing}Andreatta, M., Agon, C.
+  ''Implementing algebraic methods in OpenMusic'', 
+  {\em ICMC}, 2003.
+
+  \bibitem{andreatta2008calcul}Andreatta, M. 
+  ''Calcul algébrique et calcul catégoriel en musique: aspects théoriques et informatiques'',
+  {\em Le Calcul De La Musique}, pp. 429-477, 2008.
+
+  \bibitem{andreatta2014introduction}Andreatta, M. 
+  ''Une introduction musicologique à la recherche «mathémusicale»: aspects théoriques et enjeux épistémologiques'',
+  {\em Circuit}, \textbf{24}, 51-66, 2014.
+
+  \bibitem{bigo2016viewpoint}Bigo, L., Conklin, D. 
+  ''A viewpoint approach to symbolic music transformation'',
+  {\em Music, Mind, And Embodiment: 11th International Symposium, CMMR 2015, Revised Selected Papers 11}, pp. 213-227, Plymouth, UK, 2016.
+
+  \bibitem{blackwell2022live}Blackwell, A., Cocker, E., Cox, G., McLean, A., Magnusson, T.
+  ''Live coding: a user's manual'',
+  MIT Press, 2022.
+  \bibitem{bresson2011openmusic}Bresson, J., Agon, C., Assayag, G. 
+  ''OpenMusic: visual programming environment for music composition, analysis and research'',
+  {\em Proceedings Of The 19th ACM International Conference On Multimedia}. pp. 743-746, 2011.
+  \bibitem{bresson2014reactive}Bresson, J., Giavitto, J. 
+  ''A reactive extension of the openmusic visual programming languag'',
+  {\em Journal Of Visual Languages \& Computing}, \textbf{25}, pp. 363-375, 2014.
+  \bibitem{bresson2017next}Bresson, J., Bouche, D., Carpentier, T., Schwarz, D., Garcia, J. 
+  ''Next-generation Computer-aided Composition Environment: A new implementation of OpenMusic'',
+   {\em International Computer Music Conference}, 2017.
+
+  \bibitem{collins2003live}Collins, N., McLean, A., Rohrhuber, J., Ward, A. ''Live coding in laptop performance'',
+  {\em Organised Sound}, \textbf{8}, pp. 321-330, 2003.
+
+  \bibitem{collins2014algorave}Collins, N., McLean, A. 
+  ''Algorave: Live performance of algorithmic electronic dance music'',
+  {\em Proceedings Of The International Conference On New Interfaces For Musical Expression}, pp. 355-358, 2014.
+
+  \bibitem{ferreira2008sound}Ferreira, P.
+  '' When sound meets movement: Performance in electronic dance music'',
+   {\em Leonardo Music Journal}, \textbf{18}, pp. 17-20, 2008.
+
+  \bibitem{forte1973structure}Forte, A.
+  ''The structure of atonal music'',
+  Yale University Press,1973.
+
+  \bibitem{fraser2012spaces}Fraser, A. 
+  ''The spaces, politics, and cultural economies of electronic dance music'', {\em Geography Compass}, \textbf{6}, pp. 500-511, 2012.
+  \bibitem{goudard2017mapping}Goudard, V., Genevois, H. 
+  ''Mapping modulaire de processus polyphoniques'',
+  {\em Journées D'Informatique Musicale}, 2017.
+
+  \bibitem{lewin1987generalized}Lewin, D. 
+  ''Generalized musical intervals and transformations'', 
+  New Heaven: Yale University Press, 1987.
+
+  \bibitem{lewin1990klumpenhouwer}Lewin, D. 
+  ''Klumpenhouwer networks and some isographies that involve them'',
+  {\em Music Theory Spectrum}, \textbf{12}, pp. 83-120, 1990.
+
+  \bibitem{Livingstone_Muhlberger_Brown_Thompson_2010}Livingstone, S., Muhlberger, R., Brown, A., Thompson, W. 
+  ''Changing Musical Emotion: A Computational Rule System for Modifying Score and Performance'', 
+  {\em Computer Music Journal}, \textbf{34}, pp. 41-64, 2010.
+
+  \bibitem{mclean2010tidal}McLean, A., Wiggins, G. 
+  ''Tidal–pattern language for the live coding of music'',
+  {\em Proceedings Of The 7th Sound And Music Computing Conference}. pp. 331-334, 2010.
+
+  \bibitem{magana2018performance}Magana, J. 
+  ''Performance in EDM-A Study and Analysis of DJing and Live Performance Artists'', 2018.
+
+
+  \bibitem{micallef2021emotecontrol}Micallef Grimaud, A., Eerola, T.
+  ''EmoteControl: an interactive system for real-time control of emotional expression in music'', 
+  {\em Personal And Ubiquitous Computing}, \textbf{25} pp. 677-689, 2021
+
+  \bibitem{spiegel1981manipulations}Spiegel, L. 
+  ''Manipulations of musical patterns'',
+   {\em Proceedings Of The Symposium On Small Computers And The Arts}, pp. 19-22, 1981.
+
+  \bibitem{wright2005open}Wright, M. 
+  ''Open Sound Control: an enabling technology for musical networking'',
+  {\em Organised Sound}, \textbf{10}, pp. 193-200, 2005.
+  
+\end{thebibliography}
 
 
 \end{document}
