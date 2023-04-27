@@ -1,0 +1,47 @@
+\subsection{Transformations périodiques sur un intervalle}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[baseline= (a).base]
+
+    \node[scale=1] (a) at (0,0){
+      \begin{tikzcd}[column sep=0mm, minimum width = 0mm, minimum height=7mm, row sep=-0.05cm]
+        \svdots   & \svdots & \hspace{20mm} & \svdots & \svdots \\
+        \writechord{B}_{5}  & 11 & & 11 & \writechord{B}_{5}  \\
+        \writechord{A#}_{5} & 10 & & 10 & \writechord{A#}_{5} \\
+        \writechord{A}_{5}  & 9  & & 9 & \writechord{A}_{5}   \\
+        \writechord{G#}_{5} & 8  & & 8 & \writechord{G#}_{5}  \\
+        \writechord{G}_{5}  & 7  & & 7  & \writechord{G}_{5} \\
+        \writechord{F#}_{5} & 6  & & 6  & \writechord{F#}_{5} \\
+        \writechord{F}_{5}  & 5  & & 5  & \writechord{F}_{5}  \\
+        \writechord{E}_{5}  & 4  & & 4  & \writechord{E}_{5}  \\
+        \writechord{D#}_{5} & 3  & & 3  & \writechord{D#}_{5} \\
+        \writechord{D}_{5}  & 2  & & 2  & \writechord{D}_{5}  \\
+        \writechord{C#}_{5} & 1  & & 1  & \writechord{C#}_{5} \\
+        \writechord{C}_{5}  & 0  & & 0  & \writechord{C}_{5}  \\
+        \svdots         & \svdots & & \svdots &         \svdots 
+        \arrow[from=2-2, to=2-4]
+        \arrow[from=3-2, to=2-4]
+        \arrow[from=4-2, to=4-4]
+        \arrow[from=5-2, to=6-4]
+        \arrow[from=6-2, to=6-4]
+        \arrow[from=7-2, to=8-4]
+        \arrow[from=8-2, to=8-4]
+        \arrow[from=9-2, to=9-4]
+        \arrow[from=10-2, to=9-4]
+        \arrow[from=11-2, to=11-4]
+        \arrow[from=12-2, to=13-4]
+        \arrow[from=13-2, to=13-4]
+      \end{tikzcd}
+    };
+  \end{tikzpicture}
+  \caption{La quantisation vers la gamme majeure est périodique sur l'octave : le même motif est répété sur chaque octave.}
+  \label{fig:quantmaj}
+\end{figure}
+
+Nous définissons ici un ensemble de transformations des hauteurs facilement implémentable : les transformations périodiques sur un intervalle positif $n\in \mathbb{N}$. Ces transformations s'obtiennent en donnant l'image de toutes les notes se situant dans l'intervalle $i$ , typiquement une octave ($i = 12$), puis en répétant ce motif verticalement en additionnant (ou soustrayant) l'intervalle considéré. Plus précisément, pour une transformation $X : \mathbb{Z} \rightarrow \mathbb{Z}$, $X$ est périodique sur l'intervalle$i$ lorsque la fonction $Y : n \mapsto X(n) - n$ est périodique de période $i$. Autrement dit, $$Y(iq + n) = Y(n)$$ 
+\noindent avec  $0 \leq n < i$ et tout $q\in \mathbb{Z}$.
+
+On peut par exemple définir une transformation qui quantiser les $12$ demi-tons chromatique vers une gamme de notre choix, par exemple la gamme majeure dans la Figure \ref{fig:quantmaj}.
+
+
+
