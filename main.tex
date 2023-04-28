@@ -1,21 +1,4 @@
 
-%TODO ajouter ref sur bref historique EDM, 
-%TODO vérifier linear pitch space Composition With Pitch-Classes: A Theory of Compositional Design
-%Robert D. Morris
-
-% Commentaire 1
-% 1)figures
-% 2) Code M4L ?
-
-%Commentaire 2 : 
-% 1) Peut être que ce travail, en plus de proposer un système très intéressant, fait l'hypothèse/promeut plus généralement un renouvellement de la manière dont le publique apprécie des performances live. Si c'est le cas c'est ambitieux et ça mérite d'être mentionné.
-
-% 2) D'ailleurs, est-il prévu d'inclure d'autres types de transformations ? Les transpositions diatoniques me semblent prometteuses dans le sens où elles permettent notamment la transformation modale mineur mélodique <-> majeur. Les inversions A<-1,x> définies dans l'espace diatonique peuvent aussi être très intéressantes.
-
-% 3) Ancre ?
-
-
-
 \documentclass{article}
 \usepackage{jim,amsmath}
 \usepackage[utf8]{inputenc}
@@ -128,18 +111,18 @@
 
 %\tableofcontents
 \begin{abstract}
-Dans le contexte de l'Electronic Dance Music (EDM), de nombreux artistes utilisent des techniques de \emph{DJing} pour performer leurs propres productions sur scène, se privant ainsi de l'accès à la structure interne de leurs morceaux, et en particulier de l'équivalent de leur partition : les fichiers MIDI joués par des instruments virtuels. De plus, si l'artiste remix ou interprète sa propre production, le nombre de pistes composant un morceau d'EDM est trop grand pour être toutes contrôlées simultanément sans un outil adapté.
+Dans le contexte de l'Electronic Dance Music (EDM), de nombreux artistes utilisent des techniques de \emph{DJing} pour performer leurs propres productions sur scène, se privant ainsi de l'accès à la structure interne de leurs morceaux, et en particulier de l'équivalent de leur partition : les fichiers MIDI joués par des instruments virtuels. De plus, si l'artiste remixe ou interprète sa propre production, le nombre de pistes pouvant être contrôlées simultanément est limité sans un outil adapté.
 
-Cet article présente le logiciel LiveScaler, qui permet de contrôler en live l'harmonie et la hauteur des notes de l'ensemble des instruments virtuels d'un morceau de musique électronique. Un ensemble restreint de transformations de l'espace des hauteurs de notes, les \emph{transformations affines}, est introduit. Ces transformations sont appliquées à l'ensemble des flux MIDI d'un morceau composé préalablement. Une implémentation utilisant Max MSP en combinaison avec Ableton Live (Max for Live) est proposée. Une attention particulière est portée aux questions de contrôle, de \emph{mapping} et de mise en pratique dans le cadre de l'EDM.
+Cet article présente le logiciel LiveScaler, qui permet de contrôler en live l'harmonie et la hauteur des notes de tous les instruments virtuels d'un morceau de musique électronique. Un ensemble restreint de transformations de l'espace des hauteurs de notes, les \emph{transformations affines}, est introduit. Ces transformations sont appliquées à tous les flux MIDI d'un morceau composé préalablement. Une implémentation utilisant Max MSP en combinaison avec Ableton Live (Max for Live) est proposée. Une attention particulière est portée aux questions de contrôle, de \emph{mapping} et de mise en pratique dans le cadre de l'EDM.
 \end{abstract}
 
 \section{Introduction}
 \input{intro}
 \section{Transformations de l'espace des hauteurs}
-Dans cette section nous présentons les transformations de l'espace des hauteurs que nous utilisons dans LiveScaler. L'idée principale est d'associer à chaque note une nouvelle note, qui sera jouée en lieu et place de la note initiale par l'ensemble des instruments du morceau de musique joué. Nous commençons par définir l'espace des hauteurs de note sur lequel agissent nos transformations. Puis, nous définissons les transformation périodiques sur un intervalle. Nous nous concentrerons ensuite sur les propriétés musicales des transformations affines. Enfin, nous terminons en restreignant l'écart de hauteur entre la note initial et la note transformée.
+Dans cette section nous présentons les transformations de l'espace des hauteurs que nous utilisons dans LiveScaler. L'idée principale est d'associer à chaque note une nouvelle note, qui sera jouée en lieu et place de la note initiale par l'ensemble des instruments du morceau de musique joué. LiveScaler permet d'appliquer deux types de transformations. D'une part les \emph{transformations périodiques sur un intervalle}, que nous présenterons après avoir défini l'espace des hauteurs de note sur lequel agissent nos transformations. D'autre part les \emph{transformations affines}, dont nous décrirons les propriétés musicales. Enfin, nous terminerons en restreignant l'écart de hauteur entre la note initial et la note transformée afin de résoudre de potentiels problèmes de tessiture.
 
 \subsection{Espace des hauteurs}
-Commençons par définir mathématiquement l'espace des hauteurs de note que nous souhaitons manipuler. Nous utilisons ici l'espace des hauteurs linéaire tel que défini dans \cite{morris1987composition}. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}.  À partir d'une fréquence $f>0$, on détermine une hauteur $p$ par
+Dans cet article, nous nous plaçons dans l'espace des hauteurs linéaire. Celui-ci est obtenu à partir de la demi-droite réelle positive des fréquences, en fixant une origine arbitraire de fréquence $\alpha$ (par exemple $440$ Hz). Ici, nous appellerons cette fréquence l'\emph{ancre}.  À partir d'une fréquence $f>0$, on détermine une hauteur $p$ par
 
 $$p = \log_2(f/\alpha)$$
 

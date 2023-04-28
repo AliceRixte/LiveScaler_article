@@ -2,7 +2,7 @@
 
 L'objectif principal de l'implémentation proposée était de pouvoir expérimenter le plus rapidement possible sur les transformations en tant que musicienne. Max for Live est une intégration du  langage de progammation graphique Max MSP à Ableton Live. On peut aisément communiquer avec les différences instances du logiciel, ce qui permet dans LiveScaler à \emph{Conductor} de contrôler les \emph{Instruments} avec une faible latence\footnote{En moyenne, LiveScaler introduit une latence inférieure à $1$ ms.}. La station audionumérique Ableton Live étant particulièrement populaire pour composer et produire de la musique dans le milieu de l'EDM, c'est donc naturellement que nous avons choisi Max for Live pour une première implémentation. 
 
-La Figure \ref{fig:LiveScalerUI} montre l'interface graphique de LiveScaler. En plus des transformations affines, l'implémentation actuelle propose d'ajouter manuellement n'importe quelle transformation de gamme dans le domaine des hauteurs MIDI (ici des quantifications des hauteurs vers les modes naturels par exemple).
+La Figure \ref{fig:LiveScalerUI} montre l'interface graphique de LiveScaler. L'implémentation actuelle permet d'appliquer les transformations affines et les transformations périodiques sur un intervalle. Pour ces dernières, il suffit de renseigner manuellement l'image de chaque note de l'intervalle considéré dans un fichier pour y avoir ensuite accès via LiveScaler.
 
 
 
