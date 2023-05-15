@@ -11,7 +11,7 @@ Voici le détail de l'action des différentes touches :
   \item \LSI, \LSvi, \LSIV, \LSII, \LSV, \LSiii, \LSII, \LSvii :  les deux colones centrales déclenchent instantanément les transformations décrites précédemment. Elles sont organisées par relatives mineures/majeures.
   \item  \texttt{Hist} : LiveScaler garde en mémoire un court historique des transformation précédemment appliquées. Appuyer sur \texttt{Hist} permet de déclencher une des transformations de cet historique. Des combinaisons de la touche \texttt{Hist} et des touches \texttt{Hist}, \LSMm, \LStwo, \LSthree, et \LSfour permettent de naviguer dans cet historique \footnote{Pour plus de détail, se référer au manuel de LiveScaler}. 
   \item \LSpp, \LSmm : applique  $\tau = \tau + 1$ (resp. $\tau = \tau - 1$). En pratique, combiner la touche $++$ (resp. $--$) avec une des transformations des colonnes centrales, on transpose cette transformation d'un demi-ton vers le haut (resp. vers le bas). 
-  \item  \LSMm : applique $\mu = -\mu$ et $\tau = \tau - 4$.  En pratique, combiner \LSMm avec une des transformations centrales permet de passer d'une transposition à une inversion et réciproquement : combiner \LSMm avec \LSI $~$ (resp. \LSii, \LSiii, \LSIV, \LSV, \LSvi, \LSvii) donnera la transformation \LSi $~$ (resp.  \LSII, \LSIII, \LSiv, \LSv, \LSVI, \LSVII) et réciproquement. 
+  \item  \LSMm : applique $\tau = \tau + 5\mu $ et $\mu = -\mu$.  En pratique, combiner \LSMm avec une des transformations centrales permet de passer d'une transposition à une inversion et réciproquement : combiner \LSMm avec \LSI $~$ (resp. \LSii, \LSiii, \LSIV, \LSV, \LSvi, \LSvii) donnera la transformation \LSi $~$ (resp.  \LSII, \LSIII, \LSiv, \LSv, \LSVI, \LSVII) et réciproquement. 
   \item \LStwo, \LSthree, \LSfour : applique $\mu = 2\mu$ (resp. $\mu = 3\mu$, $\mu = 4\mu$). On obtient ainsi les modes à transposition limitée décrits précédemment.
   \item \LSMod : en combinant \LSMod avec une des transformations, on indique à LiveScaler qu'on souhaite moduler l'harmonie de notre morceau vers cette nouvelle gamme. 
 \end{itemize}
@@ -27,7 +27,7 @@ Puis, arrivés au moment tant attendu de la modulation d'un demi-ton vers le hau
 \noindent pour repartir joyeusement sur \LSI - \LSIV - \LSV - \LSIV, mais cette fois dans une tonalité de Mi bémol majeur. On obtiendrait ainsi la progression harmonique suivante : 
 
 \begin{center}
-  \dots - \writechord{D} - \writechord{G} - \writechord{A} - \writechord{G} - \writechord{D} - \writechord{G} - \writechord{A} - \writechord{Bb} - \writechord{Eb} - \writechord{Ab}  - \writechord{Bb} - \writechord{Ab} - \dots
+  \dots \hspace{4pt}- \writechord{D} - \writechord{G} - \writechord{A} - \writechord{G} - \writechord{D} - \writechord{G} - \writechord{A} - \writechord{Bb} - \writechord{Eb} - \writechord{Ab}  - \writechord{Bb} - \writechord{Ab} - \dots
 \end{center}
 
 
